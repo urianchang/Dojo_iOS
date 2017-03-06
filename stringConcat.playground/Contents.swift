@@ -53,10 +53,10 @@ var name: String = "Anakin"
 
 //: Arrays and Dictionaries
 //: Arrays are an ordered collection of values. Dictionaries are an unordered collection of key-value pairs.
-var toDoList: [String] = [String]() //OR var toDoList = [String]()
-toDoList.append("Learn iOS")
-toDoList.append("Build the next Flappy Bird")
-toDoList.append("Retire in Cancun")
+//var toDoList: [String] = [String]() //OR var toDoList = [String]()
+//toDoList.append("Learn iOS")
+//toDoList.append("Build the next Flappy Bird")
+//toDoList.append("Retire in Cancun")
 //print(toDoList)
 //print("\(toDoList[0])") //Accessing an element in an array
 //print("\(toDoList[0...1])") //Ranges can be used to index instances of the Array Type as well.
