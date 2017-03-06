@@ -87,3 +87,67 @@ var name: String = "Anakin"
 //arrayOfInts.insert(6, at: arrayOfInts.count)
 //print(arrayOfInts)
 
+//: Optionals
+//: Swift forces the developer to be cautious of potential nil values through the use of Optionals. An instance of optional type either has a value or it has no value or nil. When it is nil, it means there's nothing there. Optionals signal an instance may not have a value. It warns developers that the value may potentially be nil, and nil is very bad.
+//: Optional binding: If an Optional Type is not nil, then do something.
+//var present: String? = "Apple Watch"
+//// If we can let "unwrappedPresent" equal "present" meaning there is something inside of present then go on to do something with "unwrappedPresent"
+//if let unwrappedPresent = present {
+//    print("OMG THANK YOU FOR THE \(unwrappedPresent)")
+//}
+//: Force Unwrapping: Use the "!" operator.
+//var present: String? = "Apple Watch"
+//print("OMG THANK YOU FOR THE \(present!)")
+//: Implicitly Unwrapped Optionals
+//: Implicitly unwrapped optionals are a little weird. They are still of the Optional Type: it can either contain a value of it is nil. The difference is that we don't need to unwrap them.
+//var present: String! = "Apple Watch"
+//print("\(present)")
+//present = nil
+//print("\(present)")
+
+//: Dictionaries
+//: Initializing a dictionary
+//var myDict2: [String: Int] // OR using type inference: var myDict2 = [String: Int]()
+//: Initialize and set the values of the Dictionary in one line
+var dictionary = [
+    "Kobe": 24,
+    "Lebron": 23,
+    "Rondo": 9
+]
+//dictionary["Kobe"]
+//: When we access a Dictionary we get back an Optional Type.
+//var jerseyNumber = dictionary["Kobe"]
+//print(jerseyNumber) // Optional is not unwrapped
+//var jerseyNumber = dictionary["Kobe"]! //Force unwrapping
+//print(jerseyNumber)
+//: Best practice is to use optional binding:
+if let jerseyNumber = dictionary["Kobe"] {
+    print(jerseyNumber)
+}
+
+//: Modifying a dictionary...
+print(dictionary)
+dictionary["Fisher"] = 2
+print(dictionary)
+dictionary["Kobe"] = 24
+print(dictionary)
+
+//: Removing...
+//dictionary["Lebron"] = nil
+//print(dictionary)
+// OR use removeValue
+//var lebronsNumber = dictionary.removeValue(forKey: "Lebron")
+//print(lebronsNumber) //this message returns an Optional Type that might contain the value of the key-value pair that was deleted
+// Use opational binding...
+//if let lebronsNumber = dictionary.removeValue(forKey: "Lebron") {
+//    print(lebronsNumber)
+//}
+
+//: Looping
+for (key, value) in dictionary {
+    print("The key is \(key) and the value is \(value)")
+}
+// Printing out a tuple...
+for x in dictionary {
+    print(x)
+}
