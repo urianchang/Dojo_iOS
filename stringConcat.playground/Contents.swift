@@ -107,11 +107,11 @@ import UIKit
 //: Initializing a dictionary
 //var myDict2: [String: Int] // OR using type inference: var myDict2 = [String: Int]()
 //: Initialize and set the values of the Dictionary in one line
-var dictionary = [
-    "Kobe": 24,
-    "Lebron": 23,
-    "Rondo": 9
-]
+//var dictionary = [
+//    "Kobe": 24,
+//    "Lebron": 23,
+//    "Rondo": 9
+//]
 //dictionary["Kobe"]
 //: When we access a Dictionary we get back an Optional Type.
 //var jerseyNumber = dictionary["Kobe"]
@@ -205,6 +205,7 @@ var dictionary = [
 //var greeting: String?
 //greeting = sayHello()
 //print(greeting)
+
 //: If we want to return a value in some cases, we just have to specify that our function will return an Optional Type. For example:
 // We are declaring a function named lookForSomethingIn and declaring two parameters.
 // The first parameter will be an instance of Dictionary, with keys being instances of String
@@ -213,38 +214,125 @@ var dictionary = [
 // The second parameter will be an instance of a String.
 // It has an external name of forKey and an internal name of key.
 // This function promises to return an Optional Type that can either be nil or hold an instance of Int.
-func lookForSomethingIn(dictionary: [String: Int], forKey key: String) -> Int? {
-    if let value = dictionary[key] {
-        return value
-    } else {
-        return nil
-    }
-}
-var jerseyNumber = lookForSomethingIn(dictionary: dictionary, forKey: "Kobe")
-if let num = jerseyNumber {
-    print(num)
-}
+//func lookForSomethingIn(dictionary: [String: Int], forKey key: String) -> Int? {
+//    if let value = dictionary[key] {
+//        return value
+//    } else {
+//        return nil
+//    }
+//}
+//var jerseyNumber = lookForSomethingIn(dictionary: dictionary, forKey: "Kobe")
+//if let num = jerseyNumber {
+//    print(num)
+//}
 
 //: Scope: Describes the visibility an instance or a function will have. The inner scopes will have access to the outer scopes while outer scopes do not have access to inner scopes.
 
 //: Function Types:
 
 //This function is an instance of ([Int]) -> Int? type.
-func findMinOf(arr: [Int]) -> Int? {
-    if arr.count > 0 {
-        var min = arr[0]
-        for num in arr {
-            if num < min {
-                min = num
-            }
-        }
-        return min
-    } else {
-        return nil
+//func findMinOf(arr: [Int]) -> Int? {
+//    if arr.count > 0 {
+//        var min = arr[0]
+//        for num in arr {
+//            if num < min {
+//                min = num
+//            }
+//        }
+//        return min
+//    } else {
+//        return nil
+//    }
+//}
+
+//This function is an instance of the Type of () -> ().
+//func sayHello() -> () {
+//    print("Hello")
+//}
+
+//: Classes, Structs, and Enumerations
+//: Classes in Swift allow you to define the blueprint of a particular type and then create instances of that type.
+//Create the class Person that has one property "species"
+//class Person {
+//    var species = "H. Sapiens" // "var" for readable/writable ; "let" for read-only
+//    var name: String
+//    init(name: String) {   // Note this function doesn't get called explicitly. It is called
+//        // when creating an instance using initialization syntax -- "Person()".
+//        self.name = name     // Note use of "self" here to refer to the name property.
+//    }
+//    func speak() {
+//        print("Hello! I am a \(self.species) and my name is \(self.name)")   // Note how we refer to the properties using "self"
+//    }
+//    func studyForTopic(topic: String, hours: Int) {
+//        print("I am studying \(topic) for \(hours) hours")
+//    }
+//}
+//var myPerson: Person = Person(name: "Jay")
+//print("\(myPerson.species)")
+//myPerson.speak()
+//myPerson.studyForTopic(topic: "Math", hours: 12)
+//: It is common practice to  write the name of the first argument in the actual function name ('Topic') because the first argument is not going to get an external parameter name. By following this practice, it becomes very clear what each argument does. Methods do not give free external parameter names for the first argument but do give external parameter names for all arguments afterwards.
+
+//: Structs in Swift
+//: Structs, like classes, are used to create types. Structs are used more for creating collections of values (e.g. shapes).
+//struct Rectangle {
+//    var width : Int
+//    var height : Int
+//    func printDesc() {
+//        print("I have a width of \(width) and a height of \(height)")
+//    }
+//    mutating func doubleWidth() {    // See note below.
+//        width *= 2
+//    }
+//}
+//var myRectangle = Rectangle(width: 200, height: 400)
+//print("\(myRectangle.width)")
+
+//: 'Mutating' means method changes value(s) of the instance. We do NOT need 'mutating' when writing a similar method in a Class.
+
+//: Struct initialization
+//: Swift will give us a "memberwise" initializer so that we don't have to explicitly define the initialization method. This memberwise initializer will include external parameter names for all of the stored properties that need values.
+//: Primary role of initialization is to make sure that the new instance has values for all of its stored properties.
+
+//: Value vs Reference Types
+//: Classes and Functions are the only Reference types; everything else is a Value Type.
+//: Value types are copied when they are assigned to a variable or a constant and when they are passed in as an argument to a function. Reference types are not copied. Their memory address location is passed back and forth so changing the value of a Reference Type will change all of the "pointers" that refer to that object. 
+
+//: Example...
+// Create Person class that has a "fullName" property and an introduce method
+class Person {
+    var fullName: String
+    init(name: String) {
+        self.fullName = name
+    }
+    func introduce() {
+        print("Hi my name is \(self.fullName)")
     }
 }
 
-//This function is an instance of the Type of () -> ().
-func sayHello() -> () {
-    print("Hello")
+var j = Person(name: "Ketul Patel") // Initialize a Person object and assign it to the j variable
+var k = j                           // Create a k variable and set its value to be the j variable
+                                    // (remember classes are reference types)
+j.introduce()                       // Prints "Hi my name is Ketul Patel"
+k.fullName = "Ketul J Patel"        // We are changing the name through the k variable.
+j.introduce()                       // Prints "Hi my name is Ketul J Patel" since both
+                                    // j and k refer to the same instance in memory
+
+//: In contrast, Structs are Value Types which means that when they are passed, their values are copied and then passed.
+struct Rectangle {
+    var width: Int
+    var height: Int
 }
+var square1 = Rectangle(width: 10, height: 10)
+var square2 = square1                         // Here the val inside square 1 (an instance of Rectangle)
+// is copied and passed rather than just pointed to.
+print("square1's width: \(square1.width), square2's width \(square2.width)")
+// They are the same because square2 is a copy of square1
+square2.width = 20                            // This only changes square2 because there are
+// 2 separate instances of rectangle in memory
+square2.height = 20
+print("square1's width: \(square1.width), square2's width \(square2.width)")
+// They are different now: changing square2 changed a
+// completely separate instance from square1.
+
+//: The only way to pass a Value Type by memory location is by using the inout designation when passing the Value type as an argument to a function.
