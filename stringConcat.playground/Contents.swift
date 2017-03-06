@@ -45,9 +45,45 @@ var name: String = "Anakin"
 //    print(i)
 //}
 //: While loop
-var i = 1
-while i < 6 {
-    print(i)
-    i = i+1
-}
+//var i = 1
+//while i < 6 {
+//    print(i)
+//    i = i+1
+//}
+
+//: Arrays and Dictionaries
+//: Arrays are an ordered collection of values. Dictionaries are an unordered collection of key-value pairs.
+var toDoList: [String] = [String]() //OR var toDoList = [String]()
+toDoList.append("Learn iOS")
+toDoList.append("Build the next Flappy Bird")
+toDoList.append("Retire in Cancun")
+//print(toDoList)
+//print("\(toDoList[0])") //Accessing an element in an array
+//print("\(toDoList[0...1])") //Ranges can be used to index instances of the Array Type as well.
+//var arr = [1, 2, 3, 4]
+//arr[0] = 8
+//print(arr)
+
+//: Array methods and properties
+
+//: Append()
+//var nums = [1, 2, 3, 4]
+//nums.append(5)
+//print(nums)
+
+//: Remove()
+//var arrayOfInts = [1, 2, 3, 4, 5]
+//var popped = arrayOfInts.remove(at: 0)
+//print(popped)
+//print(arrayOfInts)
+
+//: Insert()
+//var arrayOfInts = [1, 2, 3, 4, 5]
+//arrayOfInts.insert(6, at: 5)
+//print (arrayOfInts)
+
+//: Count - holds the total number of elements in an Array.
+//var arrayOfInts = [1, 2, 3, 4, 5]
+//arrayOfInts.insert(6, at: arrayOfInts.count)
+//print(arrayOfInts)
 
