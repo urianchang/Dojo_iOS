@@ -1,0 +1,42 @@
+Project Options:
+  * Product Name: This will be the name of our folder that holds the files to our application
+  * Organization Name: XCode automatically inserts a copyright notice into every source code
+    file you create
+  * Organization Identifier: Use reverse domain name notation (e.g. com.codingdojo)
+  * Bundle Identifier: XCode combines the Product Name and Company Identifier to generate a
+    unique Bundle Identifier
+  * Language: We will be using Swift.
+  * Devices: XCode wants to know what types of devices we are building the application for
+  * Use Core Data: Leave this unchecked for now. Core Data is one of the ways we can make
+    data persist in our applications
+
+Navigator:
+  * Project Navigator: List of files that are used in our project.
+  * Symbol  Navigator: Symbols are items that the compiler recognizes such as classes,
+    enumerations, and structs.
+  * Find Navigator: We can find and replace any part of your application from one search bar.
+  * Issue Navigator: Whenever our application fails to build and run we can check out
+    the errors or warnings here.
+  * Test Navigator: We can run our unit tests here.
+  * Debug Navigator: This is where we will go to debug our application. There are tools that
+    keep track of memory, CPU, and the stack frame. A stack frame is a list of functions that
+    have been called, in the order they were called. If you click on any aspect of the stack
+    frame, we can observe the environment of our application right after that function was called.
+  * Breakpoint Navigator: We can make breakpoints in any part of our code so that we can look
+    at the values in variables during that specific time in the life cycle. This is where we
+    can look at all of our breakpoints from one place.
+  * Log Navigator: The Log Navigator keeps a history of recent build results and runs logs.
+
+Debug Area:
+The left side of the Debug Area is where we can closely observe values in specific variables
+during a breakpoint in our application. The right side of the Debug Area is where we can see
+any of our logs that we put in our application. We log during different parts of the
+application so that we know that something is hooked up properly or not.
+
+Connections:
+A View Controller's job is to manage a single screen from your app. We let a View Controller
+control our screen by making connections between our UI elements in the Storyboard by
+control-dragging them into the View Controller code. A connection lets one object know where
+another object is in memory so that the two objects can communicate.
+  * An Outlet points to, or references, an object
+  * An Action is a method that gets triggered by a button or some other view that the user interacts with
