@@ -300,39 +300,65 @@ import UIKit
 
 //: Example...
 // Create Person class that has a "fullName" property and an introduce method
-class Person {
-    var fullName: String
-    init(name: String) {
-        self.fullName = name
-    }
-    func introduce() {
-        print("Hi my name is \(self.fullName)")
-    }
-}
-
-var j = Person(name: "Ketul Patel") // Initialize a Person object and assign it to the j variable
-var k = j                           // Create a k variable and set its value to be the j variable
-                                    // (remember classes are reference types)
-j.introduce()                       // Prints "Hi my name is Ketul Patel"
-k.fullName = "Ketul J Patel"        // We are changing the name through the k variable.
-j.introduce()                       // Prints "Hi my name is Ketul J Patel" since both
-                                    // j and k refer to the same instance in memory
-
+//class Person {
+//    var fullName: String
+//    init(name: String) {
+//        self.fullName = name
+//    }
+//    func introduce() {
+//        print("Hi my name is \(self.fullName)")
+//    }
+//}
+//
+//var j = Person(name: "Ketul Patel") // Initialize a Person object and assign it to the j variable
+//var k = j                           // Create a k variable and set its value to be the j variable
+//                                    // (remember classes are reference types)
+//j.introduce()                       // Prints "Hi my name is Ketul Patel"
+//k.fullName = "Ketul J Patel"        // We are changing the name through the k variable.
+//j.introduce()                       // Prints "Hi my name is Ketul J Patel" since both
+//                                    // j and k refer to the same instance in memory
+//
 //: In contrast, Structs are Value Types which means that when they are passed, their values are copied and then passed.
-struct Rectangle {
-    var width: Int
-    var height: Int
-}
-var square1 = Rectangle(width: 10, height: 10)
-var square2 = square1                         // Here the val inside square 1 (an instance of Rectangle)
-// is copied and passed rather than just pointed to.
-print("square1's width: \(square1.width), square2's width \(square2.width)")
-// They are the same because square2 is a copy of square1
-square2.width = 20                            // This only changes square2 because there are
-// 2 separate instances of rectangle in memory
-square2.height = 20
-print("square1's width: \(square1.width), square2's width \(square2.width)")
-// They are different now: changing square2 changed a
-// completely separate instance from square1.
+//struct Rectangle {
+//    var width: Int
+//    var height: Int
+//}
+//var square1 = Rectangle(width: 10, height: 10)
+//var square2 = square1                         // Here the val inside square 1 (an instance of Rectangle)
+//// is copied and passed rather than just pointed to.
+//print("square1's width: \(square1.width), square2's width \(square2.width)")
+//// They are the same because square2 is a copy of square1
+//square2.width = 20                            // This only changes square2 because there are
+//// 2 separate instances of rectangle in memory
+//square2.height = 20
+//print("square1's width: \(square1.width), square2's width \(square2.width)")
+//// They are different now: changing square2 changed a
+//// completely separate instance from square1.
 
 //: The only way to pass a Value Type by memory location is by using the inout designation when passing the Value type as an argument to a function.
+
+//: Inheritance: Classes support inheritance while Structs do not.
+class Person {
+    var species = "H. Sapiens"
+    var name: String
+    init(name: String) {         // Note: this function doesn't get called explicitly.  It is called
+        // when creating an instance using the initialization syntax -- "Person()"
+        self.name = name           // Note the use of "self" here to refer to the name property
+    }
+    func speak() {
+        print("Hello! I am a \(self.species) and my name is \(self.name)")
+        // Note how we refer to the properties using "self"
+    }
+}
+class Developer: Person {      // Note how we are specifying that Developer will inherit from Person
+    var favoriteLanguage: String    // Declaring the favoriteLanguage property in Developer means it is only available in Developer and Developer's subclasses
+    init(name: String, favoriteLanguage: String) {  // Developer's init method takes in a name and a favoriteLanguage
+        self.favoriteLanguage = favoriteLanguage    // We set the favoriteLanguage property
+        super.init(name: name)  // We then call the superclass' init method and pass it the name property since the logic is already written in Person's init.
+    }
+    override func speak() { // We specify that we are overrriding the speak function.
+        print("Hello! I am a Developer! My name is \(self.name)")
+    }
+}
+var myDeveloper: Developer = Developer(name: "Jay", favoriteLanguage: "Swift")
+myDeveloper.speak()
