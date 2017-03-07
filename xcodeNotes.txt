@@ -40,3 +40,14 @@ control-dragging them into the View Controller code. A connection lets one objec
 another object is in memory so that the two objects can communicate.
   * An Outlet points to, or references, an object
   * An Action is a method that gets triggered by a button or some other view that the user interacts with
+
+** USER INTERFACE FIRST **
+Xcode is designed so that we build the user interface first. Always design how you want the UI
+to look and then figure out how to make it work with the code.
+
+We don't know what kind of products Apple will release, and we already have multitudes of Apple
+products with varying screen sizes. By designing our UI in a square canvas helps us think about
+layout in terms of constraints rather than exact placement.
+
+When we are initially placing View objects into the Storyboard, try to use the guided blue lines
+as much as possible. This is XCode helping us make better UI. 
