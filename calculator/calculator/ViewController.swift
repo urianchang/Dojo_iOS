@@ -14,7 +14,8 @@ class ViewController: UIViewController {
     
     //: Variables used in the app
     var numStr = "" //Holds the number currently being generated
-    var numArr = [Any]() //Holds the numbers and operators being processed
+    var numArr = [String]() //Holds the numbers and operators being processed
+    var positive = true //Keeps track of whether or not the number is positive
     
     //: When a number pad button is pressed
     @IBAction func numpadPressed(_ sender: UIButton) {
@@ -35,23 +36,70 @@ class ViewController: UIViewController {
             print ("Clear out!")
             numStr = ""
             numArr = []
+            positive = true
             numLabel.text = "0"
+        } else if sender.tag == 1 {
+            if positive {
+                numStr = "-" + numStr
+                numLabel.text = numStr
+            } else {
+                numStr.remove(at: numStr.startIndex)
+                numLabel.text = numStr
+            }
+            positive = !(positive)
+        } else if sender.tag == 2 {
+            var num = Double(numStr)!
+            num /= 100
+            numStr = String(num)
+            numLabel.text = numStr
         }
     }
     
     //: When a math function button is pressed
     @IBAction func mathFuncPressed(_ sender: UIButton) {
-        print ("Calculating...")
         if sender.tag == 0 {
-            
+            print ("NUMBER CRUNCHER")
+            if numArr.count != 0 {
+                numArr.append(numStr)
+                var num = Double()
+                var count = 0
+                num = Double(numArr[count])!
+                count += 1
+                while count < numArr.count {
+                    if numArr[count] == "+" {
+                        num += Double(numArr[count+1])!
+                    } else if numArr[count] == "-" {
+                        num -= Double(numArr[count+1])!
+                    } else if numArr[count] == "*" {
+                        num *= Double(numArr[count+1])!
+                    } else if numArr[count] == "/" {
+                        num /= Double(numArr[count+1])!
+                    }
+                    count += 2
+                }
+                numStr = String(num)
+                numLabel.text = numStr
+            }
         } else if sender.tag == 1 {
-            
+            print ("TIME TO ADD")
+            numArr.append(numStr)
+            numStr = ""
+            numArr.append("+")
         } else if sender.tag == 2 {
-            
+            print ("TIME TO SUBTRACT")
+            numArr.append(numStr)
+            numStr = ""
+            numArr.append("-")
         } else if sender.tag == 3 {
-            
+            print ("TIME TO MULTIPLY ;)")
+            numArr.append(numStr)
+            numStr = ""
+            numArr.append("*")
         } else if sender.tag == 4 {
-            
+            print ("TIME TO DIVIDE")
+            numArr.append(numStr)
+            numStr = ""
+            numArr.append("/")
         } else {
             print ("Uh...how did you get this tag?")
         }
