@@ -8,8 +8,6 @@
 
 import SpriteKit
 
-import SpriteKit
-
 //: Vector math functions
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
@@ -55,6 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //: 1. Declare private constant for the player (example of a sprite)
     let player = SKSpriteNode(imageNamed: "player")
+    var monstersDestroyed = 0
     
     override func didMove(to view: SKView) {
         //: 2. Set background color of scene
@@ -112,12 +111,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Create the actions
         // Use this action to direct the object to move off-screen to the left and the duration.
         let actionMove = SKAction.move(to: CGPoint(x: -monster.size.width/2, y: actualY), duration: TimeInterval(actualDuration))
+        
         //Removes a node from its parent ("deleting it" from the scene)
         let actionMoveDone = SKAction.removeFromParent()
         //Chain together a sequence of actions that are performed in order, one at a time.
             //1. Move to action first
             //2. Remove from parent
-        monster.run(SKAction.sequence([actionMove, actionMoveDone]))
+//        monster.run(SKAction.sequence([actionMove, actionMoveDone]))   // See below...
+        
+        //Add lose action when a monster reaches the end of the screen
+        let loseAction = SKAction.run() {
+            let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+            let gameOverScene = GameOverScene(size: self.size, won: false)
+            self.view?.presentScene(gameOverScene, transition: reveal)
+        }
+        monster.run(SKAction.sequence([actionMove, loseAction, actionMoveDone]))
         
         monster.physicsBody = SKPhysicsBody(rectangleOf: monster.size) // 1. Creates physics body for the sprite
         monster.physicsBody?.isDynamic = true // 2. Sets the sprite to be dynamic (physics engine will not control the movement of the monster
@@ -179,6 +187,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         print("Hit")
         projectile.removeFromParent()
         monster.removeFromParent()
+        
+        //Add to score and check for win condition
+        monstersDestroyed += 1
+        if (monstersDestroyed > 30) {
+            let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+            let gameOverScene = GameOverScene(size: self.size, won: true)
+            self.view?.presentScene(gameOverScene, transition: reveal)
+        }
     }
     
     //: Contact delegate method

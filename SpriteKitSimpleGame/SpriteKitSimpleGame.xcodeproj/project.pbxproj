@@ -15,6 +15,7 @@
 		CE5D3F611E712927001B1105 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE5D3F5F1E712927001B1105 /* LaunchScreen.storyboard */; };
 		CE5D3F6B1E712DA8001B1105 /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = CE5D3F691E712DA8001B1105 /* background-music-aac.caf */; };
 		CE5D3F6C1E712DA8001B1105 /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = CE5D3F6A1E712DA8001B1105 /* pew-pew-lei.caf */; };
+		CE7C2FBE1E73630D001A5D48 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7C2FBD1E73630D001A5D48 /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CE5D3F621E712927001B1105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE5D3F691E712DA8001B1105 /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
 		CE5D3F6A1E712DA8001B1105 /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
+		CE7C2FBD1E73630D001A5D48 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				CE5D3F681E712DA8001B1105 /* Sounds */,
 				CE5D3F501E712927001B1105 /* AppDelegate.swift */,
 				CE5D3F561E712927001B1105 /* GameScene.swift */,
+				CE7C2FBD1E73630D001A5D48 /* GameOverScene.swift */,
 				CE5D3F581E712927001B1105 /* GameViewController.swift */,
 				CE5D3F5A1E712927001B1105 /* Main.storyboard */,
 				CE5D3F5D1E712927001B1105 /* Assets.xcassets */,
@@ -157,6 +160,7 @@
 			files = (
 				CE5D3F571E712927001B1105 /* GameScene.swift in Sources */,
 				CE5D3F591E712927001B1105 /* GameViewController.swift in Sources */,
+				CE7C2FBE1E73630D001A5D48 /* GameOverScene.swift in Sources */,
 				CE5D3F511E712927001B1105 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,6 +321,7 @@
 				CE5D3F671E712927001B1105 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
