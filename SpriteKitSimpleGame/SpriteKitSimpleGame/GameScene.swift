@@ -43,10 +43,15 @@ extension CGPoint {
     }
 }
 
+//: Constants for physics category
+struct PhysicsCategory {
+    static let None      : UInt32 = 0
+    static let All       : UInt32 = UInt32.max
+    static let Monster   : UInt32 = 0b1       // 1
+    static let Projectile: UInt32 = 0b10      // 2
+}
 
-
-
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //: 1. Declare private constant for the player (example of a sprite)
     let player = SKSpriteNode(imageNamed: "player")
@@ -58,6 +63,11 @@ class GameScene: SKScene {
         player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
         //: 4. To make the sprite appear on the scene, add it as a child of the scene
         addChild(player)
+        
+        //: Sets physics world to have no gravity, and sets scene to notify when two things collide
+        physicsWorld.gravity = CGVector.zero
+        physicsWorld.contactDelegate = self
+        
         //: CREATE MONSTERS FOREVER MUAHAHA
         run(SKAction.repeatForever(
             SKAction.sequence([
@@ -104,6 +114,12 @@ class GameScene: SKScene {
             //2. Remove from parent
         monster.run(SKAction.sequence([actionMove, actionMoveDone]))
         
+        monster.physicsBody = SKPhysicsBody(rectangleOf: monster.size) // 1. Creates physics body for the sprite
+        monster.physicsBody?.isDynamic = true // 2. Sets the sprite to be dynamic (physics engine will not control the movement of the monster
+        monster.physicsBody?.categoryBitMask = PhysicsCategory.Monster // 3 Sets category bit mask to be monsterCategory
+        monster.physicsBody?.contactTestBitMask = PhysicsCategory.Projectile // 4 Indicates what categories of objects this object should notify the contact listener when they intersect
+        monster.physicsBody?.collisionBitMask = PhysicsCategory.None // 5 Indicates what categories of objects this oboject that the physics engine handle contact responses to (i.e. bounce off of).
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -117,6 +133,14 @@ class GameScene: SKScene {
         // 2 - Set up initial location of projectile
         let projectile = SKSpriteNode(imageNamed: "projectile")
         projectile.position = player.position
+        
+        // Physics for projectile
+        projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectile.size.width/2)
+        projectile.physicsBody?.isDynamic = true
+        projectile.physicsBody?.categoryBitMask = PhysicsCategory.Projectile
+        projectile.physicsBody?.contactTestBitMask = PhysicsCategory.Monster
+        projectile.physicsBody?.collisionBitMask = PhysicsCategory.None
+        projectile.physicsBody?.usesPreciseCollisionDetection = true
         
         // 3 - Determine offset of location to projectile
         let offset = touchLocation - projectile.position
@@ -143,6 +167,37 @@ class GameScene: SKScene {
         
     }
     
+    //: Helper function that's called when collision happens
+    func projectileDidCollideWithMonster(projectile: SKSpriteNode, monster: SKSpriteNode) {
+        print("Hit")
+        projectile.removeFromParent()
+        monster.removeFromParent()
+    }
+    
+    //: Contact delegate method
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        // 1 This method passes you the two bodies that collide, but does not guarantee that they are passed in any particular order. So this bit of code just arranges them so they are sorted by their category bit masks so you can make some assumptions later.
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        
+        // 2 Finally, it checks to see if the two bodies that collide are the projectile and monster, and if so calls the method you wrote earlier.
+        if ((firstBody.categoryBitMask & PhysicsCategory.Monster != 0) &&
+            (secondBody.categoryBitMask & PhysicsCategory.Projectile != 0)) {
+            if let monster = firstBody.node as? SKSpriteNode, let
+                projectile = secondBody.node as? SKSpriteNode {
+                projectileDidCollideWithMonster(projectile: projectile, monster: monster)
+            }
+        }
+        
+    }
     
 }
 
