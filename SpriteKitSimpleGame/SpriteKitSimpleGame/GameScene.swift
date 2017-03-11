@@ -56,13 +56,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var monstersDestroyed = 0
     
     override func didMove(to view: SKView) {
-//        //: 2. Set background color of scene
-//        backgroundColor = SKColor.white
+        //: 2. Set background color of scene
+        backgroundColor = SKColor.white
         
-        let background = SKSpriteNode(imageNamed: "nightSky")
-        background.size = self.frame.size;
-        background.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
-        addChild(background)
+//        let background = SKSpriteNode(imageNamed: "nightSky")
+//        background.size = self.frame.size;
+//        background.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
+//        addChild(background)
         
         //: 3. Position sprite to be 10% across vertically and centered horizontally
         player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
