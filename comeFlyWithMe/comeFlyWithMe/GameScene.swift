@@ -27,15 +27,18 @@ class GameScene: SKScene {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH"
         let currentHour = formatter.string(from: current as Date)
-        //        let currentHour = "8"     //Use for QA
+//        let currentHour = "8"     //Use for QA
         print ("Current hour is \(currentHour)")
         
         //: Display appropriate sky background based on time
         var bgname = String()
+        var bgmusic = String()
         if Int(currentHour)! > 7 && Int(currentHour)! < 18 {
             bgname = "daySky.png"
+            bgmusic = "warm_breeze.mp3"
         } else {
             bgname = "nightSky.png"
+            bgmusic = "starry_night.mp3"
         }
         
         //: Prep sky layer
@@ -59,7 +62,7 @@ class GameScene: SKScene {
         groundNodeNext = groundNode.copy() as! SKSpriteNode
         groundNodeNext.position = CGPoint(x: groundNode.position.x + groundNode.size.width, y: groundNode.position.y)
         
-        
+        //: IMPORTANT
         super.init(size: size)
         
         //: Add background layers to the scene
@@ -71,6 +74,12 @@ class GameScene: SKScene {
         
         self.addChild(groundNode)
         self.addChild(groundNodeNext)
+        
+        //: Add background music
+        let backgroundMusic = SKAudioNode(fileNamed: bgmusic)
+        backgroundMusic.autoplayLooped = true
+        addChild(backgroundMusic)
+        
     }
     
     //: Borrowed code... I think this is a catch for in case init isn't run
@@ -108,6 +117,12 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        //: Add player's airship
+        let airship = SKSpriteNode(imageNamed: "myShip")
+        airship.setScale(0.20)
+        airship.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
+        addChild(airship)
+        
         
     }
     

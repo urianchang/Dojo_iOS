@@ -13,6 +13,8 @@
 		CE7C2FD71E7367D2001A5D48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7C2FD51E7367D2001A5D48 /* Main.storyboard */; };
 		CE7C2FD91E7367D2001A5D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7C2FD81E7367D2001A5D48 /* Assets.xcassets */; };
 		CE7C2FDC1E7367D2001A5D48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7C2FDA1E7367D2001A5D48 /* LaunchScreen.storyboard */; };
+		CE7C2FEA1E73E543001A5D48 /* starry_night.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE7C2FE81E73E543001A5D48 /* starry_night.mp3 */; };
+		CE7C2FEB1E73E543001A5D48 /* warm_breeze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE7C2FE91E73E543001A5D48 /* warm_breeze.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		CE7C2FD81E7367D2001A5D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE7C2FDB1E7367D2001A5D48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE7C2FDD1E7367D2001A5D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE7C2FE81E73E543001A5D48 /* starry_night.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = starry_night.mp3; sourceTree = "<group>"; };
+		CE7C2FE91E73E543001A5D48 /* warm_breeze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = warm_breeze.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		CE7C2FCA1E7367D2001A5D48 /* comeFlyWithMe */ = {
 			isa = PBXGroup;
 			children = (
+				CE7C2FE71E73E543001A5D48 /* Sounds */,
 				CE7C2FCB1E7367D2001A5D48 /* AppDelegate.swift */,
 				CE7C2FD11E7367D2001A5D48 /* GameScene.swift */,
 				CE7C2FD31E7367D2001A5D48 /* GameViewController.swift */,
@@ -65,6 +70,15 @@
 				CE7C2FDD1E7367D2001A5D48 /* Info.plist */,
 			);
 			path = comeFlyWithMe;
+			sourceTree = "<group>";
+		};
+		CE7C2FE71E73E543001A5D48 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				CE7C2FE81E73E543001A5D48 /* starry_night.mp3 */,
+				CE7C2FE91E73E543001A5D48 /* warm_breeze.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +140,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7C2FEA1E73E543001A5D48 /* starry_night.mp3 in Resources */,
 				CE7C2FD71E7367D2001A5D48 /* Main.storyboard in Resources */,
+				CE7C2FEB1E73E543001A5D48 /* warm_breeze.mp3 in Resources */,
 				CE7C2FD91E7367D2001A5D48 /* Assets.xcassets in Resources */,
 				CE7C2FDC1E7367D2001A5D48 /* LaunchScreen.storyboard in Resources */,
 			);
