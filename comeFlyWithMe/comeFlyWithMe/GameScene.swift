@@ -123,7 +123,25 @@ class GameScene: SKScene {
         airship.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
         addChild(airship)
         
+        //: Add balloons and friends
+        let redBall = SKSpriteNode(imageNamed: "redBalloon")
+        redBall.setScale(0.15)
+        let yellowBall = SKSpriteNode(imageNamed: "yellowBalloon")
+        yellowBall.setScale(0.15)
+        let pinkBall = SKSpriteNode(imageNamed: "pinkBalloon")
+        pinkBall.setScale(0.15)
+        let friend = SKSpriteNode(imageNamed: "hotAir")
+        friend.setScale(0.28)
         
+        redBall.position = CGPoint(x: size.width * 0.3, y: size.height * 0.5)
+        yellowBall.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
+        pinkBall.position = CGPoint(x: size.width * 0.7, y: size.height * 0.5)
+        friend.position = CGPoint(x: size.width * 0.9, y: size.height * 0.5)
+        
+        addChild(redBall)
+        addChild(yellowBall)
+        addChild(pinkBall)
+        addChild(friend)
     }
     
     override func update(_ currentTime: TimeInterval) {
