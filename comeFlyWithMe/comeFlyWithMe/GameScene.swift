@@ -45,11 +45,12 @@ class GameScene: SKScene {
     var cloudsNodeNext : SKSpriteNode   // Clouds queued
     var groundNode : SKSpriteNode       // Ground shown
     var groundNodeNext : SKSpriteNode   // Ground queued
+    var airship : SKSpriteNode!     // Airship
     var lastFrameTime : TimeInterval = 0    // Time of last frame
     var deltaTime : TimeInterval = 0    // Time since last frame
     let shipCategory : UInt32 = 1 << 0
     let worldCategory : UInt32 = 1 << 1
-    var airship : SKSpriteNode!
+    var gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, 0, 0))
     
     override init(size: CGSize) {
         //: Check for current time
@@ -147,7 +148,9 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         //: Setup physics
-        self.physicsWorld.gravity = CGVector(dx: 1, dy: 0)
+        self.physicsWorld.gravity = CGVector(dx: -1.0, dy: 0)
+        
+
         
         //: Add player's airship
         airship = SKSpriteNode(imageNamed: "myShip")
@@ -157,8 +160,19 @@ class GameScene: SKScene {
         airship.physicsBody?.isDynamic = true
         airship.physicsBody?.allowsRotation = false
         airship.physicsBody?.categoryBitMask = shipCategory
-        
+        airship.physicsBody?.linearDamping = 1.0
         addChild(airship)
+        
+//        var gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, 0, 0))
+//        if airship.position.y > size.height*0.5 {
+//            gravityVectorY.removeFromParent()
+//            gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, -1, 0))
+//        } else if airship.position.y < size.height*0.5 {
+//            gravityVectorY.removeFromParent()
+//            gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, 1, 0))
+//        }
+        gravityVectorY.strength = 1.0
+        addChild(gravityVectorY)
         
         //: Screen borders
         let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -191,8 +205,13 @@ class GameScene: SKScene {
         guard let touch = touches.first else {
             return
         }
+        airship.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         let touchLocation = touch.location(in: self)
-        
+//        print (touchLocation.x, touchLocation.y)
+        let offset = touchLocation - airship.position
+        let direction = offset.normalized()
+//        print (offset.x, offset.y)
+        airship.physicsBody?.applyImpulse(CGVector(dx: offset.x, dy: offset.y))
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -208,6 +227,47 @@ class GameScene: SKScene {
         
         // Set last frame time to current time
         lastFrameTime = currentTime
+        
+        if Int(airship.position.y) > Int(size.height*0.55) {
+            print ("Above")
+            // Trying move to vs gravity vector...didn't turn out like I wanted.
+//            let actionMove = SKAction.move(to: CGPoint(x: size.width * 0.1, y: size.height * 0.5), duration: 2.0)
+//            let actionMoveDone = SKAction.removeFromParent()
+//            airship.run(SKAction.sequence([actionMove]))
+            gravityVectorY.removeFromParent()
+            gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, -1, 0))
+        } else if Int(airship.position.y) < Int(size.height*0.45) {
+            print ("Below")
+            gravityVectorY.removeFromParent()
+            gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, 1, 0))
+        } else {
+            print ("At the midpoint")
+            gravityVectorY.removeFromParent()
+            gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, 0, 0))
+        }
+        gravityVectorY.strength = 1.0
+        addChild(gravityVectorY)
+        
+        print (airship.position.y)
+        
+//        if Int(airship.position.y) == Int(size.height*0.5) {
+//            print ("At the midpoint")
+//            gravityVectorY.removeFromParent()
+//            gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, 0, 0))
+//        } else if Int(airship.position.y) > Int(size.height*0.5) {
+//            print ("Above")
+//            gravityVectorY.removeFromParent()
+//            gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, -1, 0))
+//        } else if Int(airship.position.y) < Int(size.height*0.5) {
+//            print ("Below")
+//            gravityVectorY.removeFromParent()
+//            gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, 1, 0))
+//        }
+//        gravityVectorY.strength = 1.0
+//        addChild(gravityVectorY)
+        
+//        print (airship.position.y)
+//        print (size.height*0.5)
         
         // Next, move each of the layers.
         // Objects that should appear move slower than foreground objects.
