@@ -9,6 +9,33 @@
 import SpriteKit
 import GameplayKit
 
+//: Vector math functions
+func + (left: CGPoint, right: CGPoint) -> CGPoint {
+    return CGPoint(x: left.x + right.x, y: left.y + right.y)
+}
+
+func - (left: CGPoint, right: CGPoint) -> CGPoint {
+    return CGPoint(x: left.x - right.x, y: left.y - right.y)
+}
+
+func * (point: CGPoint, scalar: CGFloat) -> CGPoint {
+    return CGPoint(x: point.x * scalar, y: point.y * scalar)
+}
+
+func / (point: CGPoint, scalar: CGFloat) -> CGPoint {
+    return CGPoint(x: point.x / scalar, y: point.y / scalar)
+}
+
+extension CGPoint {
+    func length() -> CGFloat {
+        return sqrt(x*x + y*y)
+    }
+    
+    func normalized() -> CGPoint {
+        return self / length()
+    }
+}
+
 class GameScene: SKScene {
     
     //: Variables that will be used
@@ -20,6 +47,9 @@ class GameScene: SKScene {
     var groundNodeNext : SKSpriteNode   // Ground queued
     var lastFrameTime : TimeInterval = 0    // Time of last frame
     var deltaTime : TimeInterval = 0    // Time since last frame
+    let shipCategory : UInt32 = 1 << 0
+    let worldCategory : UInt32 = 1 << 1
+    var airship : SKSpriteNode!
     
     override init(size: CGSize) {
         //: Check for current time
@@ -75,11 +105,10 @@ class GameScene: SKScene {
         self.addChild(groundNode)
         self.addChild(groundNodeNext)
         
-        //: Add background music
-        let backgroundMusic = SKAudioNode(fileNamed: bgmusic)
-        backgroundMusic.autoplayLooped = true
-        addChild(backgroundMusic)
-        
+//        //: Add background music
+//        let backgroundMusic = SKAudioNode(fileNamed: bgmusic)
+//        backgroundMusic.autoplayLooped = true
+//        addChild(backgroundMusic)
     }
     
     //: Borrowed code... I think this is a catch for in case init isn't run
@@ -117,31 +146,53 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        //: Setup physics
+        self.physicsWorld.gravity = CGVector(dx: 1, dy: 0)
+        
         //: Add player's airship
-        let airship = SKSpriteNode(imageNamed: "myShip")
+        airship = SKSpriteNode(imageNamed: "myShip")
         airship.setScale(0.20)
         airship.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
+        airship.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: airship.size.width, height: airship.size.height))
+        airship.physicsBody?.isDynamic = true
+        airship.physicsBody?.allowsRotation = false
+        airship.physicsBody?.categoryBitMask = shipCategory
+        
         addChild(airship)
         
-        //: Add balloons and friends
-        let redBall = SKSpriteNode(imageNamed: "redBalloon")
-        redBall.setScale(0.15)
-        let yellowBall = SKSpriteNode(imageNamed: "yellowBalloon")
-        yellowBall.setScale(0.15)
-        let pinkBall = SKSpriteNode(imageNamed: "pinkBalloon")
-        pinkBall.setScale(0.15)
-        let friend = SKSpriteNode(imageNamed: "hotAir")
-        friend.setScale(0.28)
+        //: Screen borders
+        let borderBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        borderBody.friction = 0
+        self.physicsBody = borderBody
         
-        redBall.position = CGPoint(x: size.width * 0.3, y: size.height * 0.5)
-        yellowBall.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
-        pinkBall.position = CGPoint(x: size.width * 0.7, y: size.height * 0.5)
-        friend.position = CGPoint(x: size.width * 0.9, y: size.height * 0.5)
+//        //: Add balloons and friends
+//        let redBall = SKSpriteNode(imageNamed: "redBalloon")
+//        redBall.setScale(0.15)
+//        let yellowBall = SKSpriteNode(imageNamed: "yellowBalloon")
+//        yellowBall.setScale(0.15)
+//        let pinkBall = SKSpriteNode(imageNamed: "pinkBalloon")
+//        pinkBall.setScale(0.15)
+//        let friend = SKSpriteNode(imageNamed: "hotAir")
+//        friend.setScale(0.28)
+//        
+//        redBall.position = CGPoint(x: size.width * 0.3, y: size.height * 0.5)
+//        yellowBall.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
+//        pinkBall.position = CGPoint(x: size.width * 0.7, y: size.height * 0.5)
+//        friend.position = CGPoint(x: size.width * 0.9, y: size.height * 0.5)
+//        
+//        addChild(redBall)
+//        addChild(yellowBall)
+//        addChild(pinkBall)
+//        addChild(friend)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //: Use only one touch point
+        guard let touch = touches.first else {
+            return
+        }
+        let touchLocation = touch.location(in: self)
         
-        addChild(redBall)
-        addChild(yellowBall)
-        addChild(pinkBall)
-        addChild(friend)
     }
     
     override func update(_ currentTime: TimeInterval) {
