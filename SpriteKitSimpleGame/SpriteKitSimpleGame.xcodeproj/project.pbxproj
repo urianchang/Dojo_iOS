@@ -16,6 +16,7 @@
 		CE5D3F6B1E712DA8001B1105 /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = CE5D3F691E712DA8001B1105 /* background-music-aac.caf */; };
 		CE5D3F6C1E712DA8001B1105 /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = CE5D3F6A1E712DA8001B1105 /* pew-pew-lei.caf */; };
 		CE7C2FBE1E73630D001A5D48 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7C2FBD1E73630D001A5D48 /* GameOverScene.swift */; };
+		CE7C2FE61E739963001A5D48 /* Evan_Schaeffer_-_06_-_Warm_Breeze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE7C2FE51E739963001A5D48 /* Evan_Schaeffer_-_06_-_Warm_Breeze.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		CE5D3F691E712DA8001B1105 /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
 		CE5D3F6A1E712DA8001B1105 /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
 		CE7C2FBD1E73630D001A5D48 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		CE7C2FE51E739963001A5D48 /* Evan_Schaeffer_-_06_-_Warm_Breeze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Evan_Schaeffer_-_06_-_Warm_Breeze.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		CE5D3F681E712DA8001B1105 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				CE7C2FE51E739963001A5D48 /* Evan_Schaeffer_-_06_-_Warm_Breeze.mp3 */,
 				CE5D3F691E712DA8001B1105 /* background-music-aac.caf */,
 				CE5D3F6A1E712DA8001B1105 /* pew-pew-lei.caf */,
 			);
@@ -145,6 +148,7 @@
 			files = (
 				CE5D3F6B1E712DA8001B1105 /* background-music-aac.caf in Resources */,
 				CE5D3F5C1E712927001B1105 /* Main.storyboard in Resources */,
+				CE7C2FE61E739963001A5D48 /* Evan_Schaeffer_-_06_-_Warm_Breeze.mp3 in Resources */,
 				CE5D3F5E1E712927001B1105 /* Assets.xcassets in Resources */,
 				CE5D3F6C1E712DA8001B1105 /* pew-pew-lei.caf in Resources */,
 				CE5D3F611E712927001B1105 /* LaunchScreen.storyboard in Resources */,

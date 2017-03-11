@@ -56,8 +56,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var monstersDestroyed = 0
     
     override func didMove(to view: SKView) {
-        //: 2. Set background color of scene
-        backgroundColor = SKColor.white
+//        //: 2. Set background color of scene
+//        backgroundColor = SKColor.white
+        
+        let background = SKSpriteNode(imageNamed: "nightSky")
+        background.size = self.frame.size;
+        background.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
+        addChild(background)
+        
         //: 3. Position sprite to be 10% across vertically and centered horizontally
         player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
         //: 4. To make the sprite appear on the scene, add it as a child of the scene
@@ -76,7 +82,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ))
         
         //: Add background music
-        let backgroundMusic = SKAudioNode(fileNamed: "background-music-aac.caf")
+        let backgroundMusic = SKAudioNode(fileNamed: "Evan_Schaeffer_-_06_-_Warm_Breeze.mp3")
         backgroundMusic.autoplayLooped = true
         addChild(backgroundMusic)
     }
