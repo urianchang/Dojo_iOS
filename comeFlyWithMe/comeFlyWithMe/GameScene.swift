@@ -11,37 +11,94 @@ import GameplayKit
 
 
 let sounds = false  //: Variable to enable/disable sounds
-
+var userShip : Int = 0 //: Variable to keep track of which ship the user has selected ('0' means no ship has been selected)
 
 //: Start menu
 class StartMenu: SKScene {
-    let startText = SKLabelNode(fontNamed: "Chalkduster")
-    
+    var welcomeText = SKLabelNode(fontNamed: "Zapfino")
+    var startText = SKLabelNode(fontNamed: "Chalkduster")
+    var shipSelect1 = SKSpriteNode(imageNamed: "dirigible_icon")
+    var shipSelect2 = SKSpriteNode(imageNamed: "dirigible_icon")
+
     override func didMove(to view: SKView) {
-        startText.text = "Tap to Play"
+        //: Create welcome text
+        welcomeText.text = "Let's fly away"
+        welcomeText.fontSize = 40
+        welcomeText.fontColor = UIColor.white
+        welcomeText.position = CGPoint(x: frame.midX, y: frame.height - welcomeText.frame.maxY)
+        
+        //: Create ship selectors
+            //: 1. Dirigible
+        shipSelect1.setScale(0.20)
+        shipSelect1.color = UIColor.red
+        shipSelect1.position = CGPoint(x: frame.midX - shipSelect1.frame.maxX-10, y: frame.midY)
+
+            //: 2. Paper airplane
+        shipSelect2.setScale(0.20)
+        shipSelect2.color = UIColor.red
+        shipSelect2.position = CGPoint(x: frame.midX + shipSelect2.frame.maxX+10, y: frame.midY)
+        
+        //: Create start text
+        startText.text = "Please choose a ship"
         startText.fontSize = 40
         startText.fontColor = UIColor.orange
-        startText.position = CGPoint(x: frame.midX, y: frame.midY)
+        startText.position = CGPoint(x: frame.midX, y: startText.frame.height)
         
+        self.addChild(welcomeText)
+        self.addChild(shipSelect1)
+        self.addChild(shipSelect2)
         self.addChild(startText)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        /* Called when a touch begins */
-        for touch in (touches){
-            let location = touch.location(in: self)
-            //this will detect touch on play button
-            if self.atPoint(location) == self.startText {
-                print ("START BUTTON PRESSED")
-                //it will transits to the next scene
-                let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+        //: Flashing animation
+        let fadeSeq = SKAction.sequence([
+            SKAction.fadeIn(withDuration: 0.5),
+            SKAction.fadeOut(withDuration: 0.5)
+            ])
+        let flash = SKAction.repeatForever(fadeSeq)
+        
+        //: Only want to detect the first touch
+        guard let touch = touches.first else {
+            return
+        }
+        let location = touch.location(in: self)
+        
+        //: When user selects dirigible
+        if self.atPoint(location) == self.shipSelect1 {
+            userShip = 1
+            shipSelect2.colorBlendFactor = 0.0
+            shipSelect1.colorBlendFactor = 0.5
+        }
+        
+        //: When user selects paper airplane
+        if self.atPoint(location) == self.shipSelect2 {
+            userShip = 2
+            shipSelect1.colorBlendFactor = 0.0
+            shipSelect2.colorBlendFactor = 0.5
+        }
+        
+        //: When user makes any selection
+        if self.atPoint(location) == self.shipSelect1 || self.atPoint(location) == self.shipSelect2 {
+            startText.removeFromParent()
+            startText.text = "Tap to Play"
+            startText.run(flash)
+            addChild(startText)
+        }
+
+        //: When user selects the start text
+        if self.atPoint(location) == self.startText {
+            print ("Start button pressed")
+            if userShip != 0 {
+                print ("User selected ship \(userShip)")
+                let reveal = SKTransition.flipHorizontal(withDuration: 0.3)
                 let letsPlay = GameScene(size: self.size)
                 self.view?.presentScene(letsPlay, transition: reveal)
             }
         }
     }
+
     override func update(_ currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
     }
 }
 
