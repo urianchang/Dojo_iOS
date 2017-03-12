@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-//: Vector math functions
+//: Vector math functions (extending the basic ones)
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
 }
@@ -150,7 +150,6 @@ class GameScene: SKScene {
         //: Setup physics
         self.physicsWorld.gravity = CGVector(dx: -1.0, dy: 0)
         
-
         
         //: Add player's airship
         airship = SKSpriteNode(imageNamed: "myShip")
@@ -171,27 +170,65 @@ class GameScene: SKScene {
         borderBody.friction = 0
         self.physicsBody = borderBody
         
-//        //: Add balloons and friends
-//        let redBall = SKSpriteNode(imageNamed: "redBalloon")
-//        redBall.setScale(0.15)
-//        let yellowBall = SKSpriteNode(imageNamed: "yellowBalloon")
-//        yellowBall.setScale(0.15)
-//        let pinkBall = SKSpriteNode(imageNamed: "pinkBalloon")
-//        pinkBall.setScale(0.15)
-//        let friend = SKSpriteNode(imageNamed: "hotAir")
-//        friend.setScale(0.28)
-//        
-//        redBall.position = CGPoint(x: size.width * 0.3, y: size.height * 0.5)
-//        yellowBall.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
-//        pinkBall.position = CGPoint(x: size.width * 0.7, y: size.height * 0.5)
-//        friend.position = CGPoint(x: size.width * 0.9, y: size.height * 0.5)
-//        
-//        addChild(redBall)
-//        addChild(yellowBall)
-//        addChild(pinkBall)
-//        addChild(friend)
+        //: Create balloons indefinitely
+        run(SKAction.repeatForever(
+            SKAction.sequence([
+                SKAction.run(addBalloons),
+                SKAction.wait(forDuration: 2.0)])
+        ))
     }
     
+    //: Helper functions for generating random floats
+    func random() -> CGFloat {
+        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+    }
+    func random(min: CGFloat, max: CGFloat) -> CGFloat {
+        return random() * (max - min) + min
+    }
+    
+    func addBalloons() {
+        //: Call random function to determine what type of balloon to add
+        let randBall = Int(arc4random_uniform(10))
+        var balloon = SKSpriteNode()
+        
+        if randBall == 0 {
+            balloon = SKSpriteNode(imageNamed: "hotAir")
+            balloon.setScale(0.28)
+        } else if randBall >= 1 && randBall < 3 {
+            balloon = SKSpriteNode(imageNamed: "pinkBalloon")
+            balloon.setScale(0.15)
+        } else if randBall >= 3 && randBall < 6 {
+            balloon = SKSpriteNode(imageNamed: "yellowBalloon")
+            balloon.setScale(0.15)
+        } else {
+            balloon = SKSpriteNode(imageNamed: "redBalloon")
+            balloon.setScale(0.15)
+        }
+        
+        //: Determine where to put the balloon on the Y-axis
+        let yPosition = random(min: balloon.size.height/2, max: size.height - balloon.size.height/2)
+        
+        //: Place balloon off-screen when it is first rendered
+        balloon.position = CGPoint(x: size.width + balloon.size.width/2, y: yPosition)
+        
+        //: Add the balloon
+        addChild(balloon)
+        
+        //: Determine the horizontal speed of the balloon (duration)
+        let balloonSpeed = random(min: CGFloat(2.0), max: CGFloat(4.0))
+        
+        //: Balloon actions
+        
+            //: Move from right to left
+        let balloonMove = SKAction.move(to: CGPoint(x: -balloon.size.width/2, y: yPosition), duration: TimeInterval(balloonSpeed))
+            //: Remove balloon at the end of its lifecycle
+        let balloonPop = SKAction.removeFromParent()
+        
+            //: Queue up the balloon actions and execute
+        balloon.run(SKAction.sequence([balloonMove, balloonPop]))
+    }
+    
+    //: Action when user touches the screen (moves the airship)
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         //: Use only one touch point
         guard let touch = touches.first else {
