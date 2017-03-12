@@ -13,8 +13,10 @@
 		CE7C2FD71E7367D2001A5D48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7C2FD51E7367D2001A5D48 /* Main.storyboard */; };
 		CE7C2FD91E7367D2001A5D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7C2FD81E7367D2001A5D48 /* Assets.xcassets */; };
 		CE7C2FDC1E7367D2001A5D48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7C2FDA1E7367D2001A5D48 /* LaunchScreen.storyboard */; };
-		CE7C2FEA1E73E543001A5D48 /* starry_night.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE7C2FE81E73E543001A5D48 /* starry_night.mp3 */; };
-		CE7C2FEB1E73E543001A5D48 /* warm_breeze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE7C2FE91E73E543001A5D48 /* warm_breeze.mp3 */; };
+		CE9B0D2A1E74F99900C0FD0F /* night_sky.caf in Resources */ = {isa = PBXBuildFile; fileRef = CE9B0D271E74F99900C0FD0F /* night_sky.caf */; };
+		CE9B0D2B1E74F99900C0FD0F /* warm_breeze.caf in Resources */ = {isa = PBXBuildFile; fileRef = CE9B0D281E74F99900C0FD0F /* warm_breeze.caf */; };
+		CE9B0D2C1E74F99900C0FD0F /* yay.caf in Resources */ = {isa = PBXBuildFile; fileRef = CE9B0D291E74F99900C0FD0F /* yay.caf */; };
+		CE9B0D2F1E74FA4F00C0FD0F /* bell.caf in Resources */ = {isa = PBXBuildFile; fileRef = CE9B0D2E1E74FA4F00C0FD0F /* bell.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +28,10 @@
 		CE7C2FD81E7367D2001A5D48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE7C2FDB1E7367D2001A5D48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE7C2FDD1E7367D2001A5D48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE7C2FE81E73E543001A5D48 /* starry_night.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = starry_night.mp3; sourceTree = "<group>"; };
-		CE7C2FE91E73E543001A5D48 /* warm_breeze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = warm_breeze.mp3; sourceTree = "<group>"; };
+		CE9B0D271E74F99900C0FD0F /* night_sky.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = night_sky.caf; sourceTree = "<group>"; };
+		CE9B0D281E74F99900C0FD0F /* warm_breeze.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = warm_breeze.caf; sourceTree = "<group>"; };
+		CE9B0D291E74F99900C0FD0F /* yay.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = yay.caf; sourceTree = "<group>"; };
+		CE9B0D2E1E74FA4F00C0FD0F /* bell.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bell.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +79,10 @@
 		CE7C2FE71E73E543001A5D48 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				CE7C2FE81E73E543001A5D48 /* starry_night.mp3 */,
-				CE7C2FE91E73E543001A5D48 /* warm_breeze.mp3 */,
+				CE9B0D2E1E74FA4F00C0FD0F /* bell.caf */,
+				CE9B0D271E74F99900C0FD0F /* night_sky.caf */,
+				CE9B0D281E74F99900C0FD0F /* warm_breeze.caf */,
+				CE9B0D291E74F99900C0FD0F /* yay.caf */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -140,10 +146,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE7C2FEA1E73E543001A5D48 /* starry_night.mp3 in Resources */,
+				CE9B0D2C1E74F99900C0FD0F /* yay.caf in Resources */,
 				CE7C2FD71E7367D2001A5D48 /* Main.storyboard in Resources */,
-				CE7C2FEB1E73E543001A5D48 /* warm_breeze.mp3 in Resources */,
+				CE9B0D2B1E74F99900C0FD0F /* warm_breeze.caf in Resources */,
+				CE9B0D2A1E74F99900C0FD0F /* night_sky.caf in Resources */,
 				CE7C2FD91E7367D2001A5D48 /* Assets.xcassets in Resources */,
+				CE9B0D2F1E74FA4F00C0FD0F /* bell.caf in Resources */,
 				CE7C2FDC1E7367D2001A5D48 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -62,10 +62,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var bgmusic = String()
         if Int(currentHour)! > 7 && Int(currentHour)! < 18 {
             bgname = "daySky.png"
-            bgmusic = "warm_breeze.mp3"
+            bgmusic = "warm_breeze.caf"
         } else {
             bgname = "nightSky.png"
-            bgmusic = "starry_night.mp3"
+            bgmusic = "night_sky.caf"
         }
         
         //: Prep sky layer
@@ -102,10 +102,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(groundNode)
         self.addChild(groundNodeNext)
         
-//        //: Add background music
-//        let backgroundMusic = SKAudioNode(fileNamed: bgmusic)
-//        backgroundMusic.autoplayLooped = true
-//        addChild(backgroundMusic)
+        //: Add background music
+        let backgroundMusic = SKAudioNode(fileNamed: bgmusic)
+        backgroundMusic.autoplayLooped = true
+        addChild(backgroundMusic)
     }
     
     //: Borrowed code... I think this is a catch for in case init isn't run
@@ -266,6 +266,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func shipHitBalloon(balloon: SKSpriteNode) {
         if let ballKind = balloon.name {
             if ballKind == "friend" {
+                run(SKAction.playSoundFileNamed("yay.caf", waitForCompletion: false))
                 totalHighFives += 1
                 totalScore += 10
             } else {
@@ -276,6 +277,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 } else {
                     totalScore += 1
                 }
+                run(SKAction.playSoundFileNamed("bell.caf", waitForCompletion: false))
                 totalBalloons += 1
             }
         }
