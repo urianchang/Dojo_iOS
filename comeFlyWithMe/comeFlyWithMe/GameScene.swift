@@ -88,12 +88,18 @@ class StartMenu: SKScene {
 
         //: When user selects the start text
         if self.atPoint(location) == self.startText {
-            print ("Start button pressed")
+            //print ("Start button pressed")
             if userShip != 0 {
-                print ("User selected ship \(userShip)")
-                let reveal = SKTransition.flipHorizontal(withDuration: 0.3)
-                let letsPlay = GameScene(size: self.size)
-                self.view?.presentScene(letsPlay, transition: reveal)
+                //print ("User selected ship \(userShip)")
+                if userShip == 1 {
+                    let reveal = SKTransition.flipHorizontal(withDuration: 0.3)
+                    let letsPlay = GameScene1(size: self.size)
+                    self.view?.presentScene(letsPlay, transition: reveal)
+                } else {
+                    let reveal = SKTransition.flipHorizontal(withDuration: 0.3)
+                    let letsPlay = GameScene2(size: self.size)
+                    self.view?.presentScene(letsPlay, transition: reveal)
+                }
             }
         }
     }
@@ -102,8 +108,25 @@ class StartMenu: SKScene {
     }
 }
 
-//: Actual game scene
-class GameScene: SKScene, SKPhysicsContactDelegate {
+//: Game Scene for Paper plane
+class GameScene2: SKScene {
+    override init(size: CGSize) {
+        super.init(size: size)
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override func didMove(to view: SKView) {
+        print ("Game started with ship \(userShip)")
+    }
+    override func update(_ currentTime: TimeInterval) {
+    }
+}
+
+
+
+//: Game Scene for Dirigible
+class GameScene1: SKScene, SKPhysicsContactDelegate {
     
     //: Variables that will be used
     var skyNode : SKSpriteNode      // Sky shown
@@ -187,7 +210,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    //: Borrowed code... I think this is a catch for in case init isn't run
     required init?(coder aDecoder: NSCoder) {
         fatalError("Not implemented")
     }
@@ -217,6 +239,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        print ("Game started with ship \(userShip)")
         //: Setup physics p.I
         self.physicsWorld.gravity = CGVector(dx: -5.0, dy: 0)
         self.physicsWorld.contactDelegate = self
