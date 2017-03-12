@@ -27,6 +27,7 @@ class startMenu: SKScene {
             let location = touch.location(in: self)
             //this will detect touch on play button
             if self.atPoint(location) == self.startText {
+                print ("START BUTTON PRESSED")
                 //it will transits to the next scene
                 let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
                 let letsPlay = Games(size: self.size)

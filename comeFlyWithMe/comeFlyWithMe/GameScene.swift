@@ -12,6 +12,40 @@ import GameplayKit
 
 let sounds = false  //: Variable to enable/disable sounds
 
+
+//: Start menu
+class StartMenu: SKScene {
+    let startText = SKLabelNode(fontNamed: "Chalkduster")
+    
+    override func didMove(to view: SKView) {
+        startText.text = "Tap to Play"
+        startText.fontSize = 40
+        startText.fontColor = UIColor.orange
+        startText.position = CGPoint(x: frame.midX, y: frame.midY)
+        
+        self.addChild(startText)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        /* Called when a touch begins */
+        for touch in (touches){
+            let location = touch.location(in: self)
+            //this will detect touch on play button
+            if self.atPoint(location) == self.startText {
+                print ("START BUTTON PRESSED")
+                //it will transits to the next scene
+                let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+                let letsPlay = GameScene(size: self.size)
+                self.view?.presentScene(letsPlay, transition: reveal)
+            }
+        }
+    }
+    override func update(_ currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
+    }
+}
+
+//: Actual game scene
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //: Variables that will be used
