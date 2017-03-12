@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "comeFlyWithMe/GameScene.swift"
-            timestampString = "510972379.117408"
+            timestampString = "510981650.603144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "didMove(to:)"
             landmarkType = "7">
          </BreakpointContent>

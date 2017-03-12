@@ -41,9 +41,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let shipCategory : UInt32 = 1 << 0  // Physics body category for airship
     let balloonCategory : UInt32 = 1 << 1   // Physics body category for balloon
     var gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, 0, 0)) // Vertical gravity vector
-    var totalScore = 0
-    var totalHighFives = 0
-    var totalBalloons = 0
+    var totalScore = 0  // Total score tracker
+    var scoreLabelNode : SKLabelNode! // Score label
+    var totalHighFives = 0  // Total high-fives tracker
+    var highFiveLabelNode : SKLabelNode! // High-five counter label
+    var totalBalloons = 0   // Total balloons saved
+    var balloonsLabelNode : SKLabelNode! // Balloon counter label
     
     override init(size: CGSize) {
         //: Check for current time
@@ -51,7 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH"
         let currentHour = formatter.string(from: current as Date)
-//        let currentHour = "8"     //Use for QA
+        //let currentHour = "20"     //Use for QA
         print ("Current hour is \(currentHour)")
         
         //: Display appropriate sky background based on time
@@ -115,22 +118,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     nextSprite : SKSpriteNode, speed : Float) -> Void {
         var newPosition = CGPoint.zero
         
-        // For both the sprite and its duplicate:
+        // For both the layer and its duplicate:
         for spriteToMove in [sprite, nextSprite] {
             
-            // Shift the sprite leftward based on the speed
+            // Shift the layer leftward based on the speed
             newPosition = spriteToMove.position
             newPosition.x -= CGFloat(speed * Float(deltaTime))
             spriteToMove.position = newPosition
             
-            // If this sprite is now offscreen (i.e., its rightmost edge is
-            // farther left than the scene's leftmost edge):
+            // If this layer is offscreen:
             if spriteToMove.frame.maxX < self.frame.minX {
-                
-                // Shift it over so that it's now to the immediate right
-                // of the other sprite.
-                // This means that the two sprites are effectively
-                // leap-frogging each other as they both move.
+                // Shift it over so that it's now to the immediate right of the current layer
                 spriteToMove.position =
                     CGPoint(x: spriteToMove.position.x +
                         spriteToMove.size.width * 2,
@@ -140,8 +138,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
-        //: Setup physics
-        self.physicsWorld.gravity = CGVector(dx: -1.0, dy: 0)
+        //: Setup physics p.I
+        self.physicsWorld.gravity = CGVector(dx: -5.0, dy: 0)
         self.physicsWorld.contactDelegate = self
         
         //: Add player's airship
@@ -155,6 +153,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         airship.physicsBody?.linearDamping = 1.0
         addChild(airship)
         
+        //: Setup physics p.II
         gravityVectorY.strength = 1.0
         addChild(gravityVectorY)
         
@@ -169,6 +168,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 SKAction.run(addBalloons),
                 SKAction.wait(forDuration: 2.0)])
         ))
+        
+        //: Create the labels
+        scoreLabelNode = SKLabelNode(fontNamed: "Chalkduster")
+        scoreLabelNode.fontSize = 18.0
+        scoreLabelNode.text = "Score: \(totalScore)"
+        scoreLabelNode.position = CGPoint(x: scoreLabelNode.frame.maxX, y: 8)
+        
+        balloonsLabelNode = SKLabelNode(fontNamed: "Chalkduster")
+        balloonsLabelNode.text = "Balloons: \(totalBalloons)"
+        balloonsLabelNode.fontSize = 18.0
+        balloonsLabelNode.position = CGPoint(x: self.frame.midX, y: 8)
+        
+        highFiveLabelNode = SKLabelNode(fontNamed: "Chalkduster")
+        highFiveLabelNode.text = "High-fives: \(totalHighFives)"
+        highFiveLabelNode.fontSize = 18.0
+        highFiveLabelNode.position = CGPoint(x: self.frame.width - highFiveLabelNode.frame.maxX, y: 8)
+        
+        //: Add the labels
+        addChild(scoreLabelNode)
+        addChild(balloonsLabelNode)
+        addChild(highFiveLabelNode)
     }
     
     //: Action when user touches the screen (moves the airship)
@@ -244,7 +264,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //: Helper function for when collision is detected between ship and balloon
     func shipHitBalloon(balloon: SKSpriteNode) {
-        print ("Collided with a \(balloon.name)")
+        if let ballKind = balloon.name {
+            if ballKind == "friend" {
+                totalHighFives += 1
+                totalScore += 10
+            } else {
+                if ballKind == "pink" {
+                    totalScore += 5
+                } else if ballKind == "yellow" {
+                    totalScore += 3
+                } else {
+                    totalScore += 1
+                }
+                totalBalloons += 1
+            }
+        }
+        
+        //: Recreate the labels
+            //: 1. Remove labels
+        scoreLabelNode.removeFromParent()
+        balloonsLabelNode.removeFromParent()
+        highFiveLabelNode.removeFromParent()
+        
+            //: 2. Create labels
+        scoreLabelNode = SKLabelNode(fontNamed: "Chalkduster")
+        scoreLabelNode.fontSize = 18.0
+        scoreLabelNode.text = "Score: \(totalScore)"
+        scoreLabelNode.position = CGPoint(x: scoreLabelNode.frame.maxX, y: 8)
+        
+        balloonsLabelNode = SKLabelNode(fontNamed: "Chalkduster")
+        balloonsLabelNode.text = "Balloons: \(totalBalloons)"
+        balloonsLabelNode.fontSize = 18.0
+        balloonsLabelNode.position = CGPoint(x: self.frame.midX, y: 8)
+        
+        highFiveLabelNode = SKLabelNode(fontNamed: "Chalkduster")
+        highFiveLabelNode.text = "High-fives: \(totalHighFives)"
+        highFiveLabelNode.fontSize = 18.0
+        highFiveLabelNode.position = CGPoint(x: self.frame.width - highFiveLabelNode.frame.maxX, y: 8)
+        
+            //: 3. Add labels
+        addChild(scoreLabelNode)
+        addChild(balloonsLabelNode)
+        addChild(highFiveLabelNode)
+        
         balloon.removeFromParent()
     }
     
