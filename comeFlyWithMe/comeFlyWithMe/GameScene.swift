@@ -9,10 +9,8 @@
 import SpriteKit
 import GameplayKit
 
-//: Variable to enable/disable sounds
-let sounds = false
 
-
+let sounds = false  //: Variable to enable/disable sounds
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -184,6 +182,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(scoreLabelNode)
         addChild(balloonsLabelNode)
         addChild(highFiveLabelNode)
+        
     }
     
     //: Action when user touches the screen (moves the airship)
