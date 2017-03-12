@@ -9,6 +9,9 @@
 import SpriteKit
 import GameplayKit
 
+//: Variable to enable/disable sounds
+let sounds = false
+
 //: Vector math functions (extending the basic ones)
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
@@ -55,7 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         formatter.dateFormat = "HH"
         let currentHour = formatter.string(from: current as Date)
         //let currentHour = "20"     //Use for QA
-        print ("Current hour is \(currentHour)")
+        //print ("Current hour is \(currentHour)")
         
         //: Display appropriate sky background based on time
         var bgname = String()
@@ -103,9 +106,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(groundNodeNext)
         
         //: Add background music
-        let backgroundMusic = SKAudioNode(fileNamed: bgmusic)
-        backgroundMusic.autoplayLooped = true
-        addChild(backgroundMusic)
+        if sounds {
+            let backgroundMusic = SKAudioNode(fileNamed: bgmusic)
+            backgroundMusic.autoplayLooped = true
+            addChild(backgroundMusic)
+        }
     }
     
     //: Borrowed code... I think this is a catch for in case init isn't run
@@ -143,9 +148,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         
         //: Add player's airship
-        airship = SKSpriteNode(imageNamed: "myShip")
+        let airshipTexture1 = SKTexture(imageNamed: "myShip")
+        let airshipTexture2 = SKTexture(imageNamed: "myShip2")
+        let animation = SKAction.animate(with: [airshipTexture1, airshipTexture2], timePerFrame: 0.06)
+        let propeller = SKAction.repeatForever(animation)
+        airship = SKSpriteNode(texture: airshipTexture1)
         airship.setScale(0.20)
         airship.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
+        airship.run(propeller)
         airship.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: airship.size.width, height: airship.size.height))
         airship.physicsBody?.isDynamic = true
         airship.physicsBody?.allowsRotation = false
@@ -266,7 +276,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func shipHitBalloon(balloon: SKSpriteNode) {
         if let ballKind = balloon.name {
             if ballKind == "friend" {
-                run(SKAction.playSoundFileNamed("yay.caf", waitForCompletion: false))
+                if sounds {run(SKAction.playSoundFileNamed("yay.caf", waitForCompletion: false))}
                 totalHighFives += 1
                 totalScore += 10
             } else {
@@ -277,7 +287,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 } else {
                     totalScore += 1
                 }
-                run(SKAction.playSoundFileNamed("bell.caf", waitForCompletion: false))
+                if sounds {run(SKAction.playSoundFileNamed("bell.caf", waitForCompletion: false))}
                 totalBalloons += 1
             }
         }
