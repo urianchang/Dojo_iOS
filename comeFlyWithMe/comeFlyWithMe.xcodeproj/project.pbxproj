@@ -119,6 +119,7 @@
 				TargetAttributes = {
 					CE7C2FC71E7367D2001A5D48 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 6E7V4VW85H;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -286,8 +287,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6E7V4VW85H;
 				INFOPLIST_FILE = comeFlyWithMe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingdojo.uchang.comeFlyWithMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -299,8 +301,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6E7V4VW85H;
 				INFOPLIST_FILE = comeFlyWithMe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingdojo.uchang.comeFlyWithMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
