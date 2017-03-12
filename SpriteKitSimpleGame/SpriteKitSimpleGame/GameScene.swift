@@ -81,10 +81,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 ])
         ))
         
-        //: Add background music
-        let backgroundMusic = SKAudioNode(fileNamed: "Evan_Schaeffer_-_06_-_Warm_Breeze.mp3")
-        backgroundMusic.autoplayLooped = true
-        addChild(backgroundMusic)
+//        //: Add background music
+//        let backgroundMusic = SKAudioNode(fileNamed: "Evan_Schaeffer_-_06_-_Warm_Breeze.mp3")
+//        backgroundMusic.autoplayLooped = true
+//        addChild(backgroundMusic)
     }
     
     //: Adding some monsters!
@@ -134,7 +134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         monster.run(SKAction.sequence([actionMove, loseAction, actionMoveDone]))
         
         monster.physicsBody = SKPhysicsBody(rectangleOf: monster.size) // 1. Creates physics body for the sprite
-        monster.physicsBody?.isDynamic = true // 2. Sets the sprite to be dynamic (physics engine will not control the movement of the monster
+        monster.physicsBody?.isDynamic = false // 2. Sets the sprite to be dynamic (physics engine will not control the movement of the monster
         monster.physicsBody?.categoryBitMask = PhysicsCategory.Monster // 3 Sets category bit mask to be monsterCategory
         monster.physicsBody?.contactTestBitMask = PhysicsCategory.Projectile // 4 Indicates what categories of objects this object should notify the contact listener when they intersect
         monster.physicsBody?.collisionBitMask = PhysicsCategory.None // 5 Indicates what categories of objects this oboject that the physics engine handle contact responses to (i.e. bounce off of).
@@ -142,8 +142,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //: Add sound effect
-        run(SKAction.playSoundFileNamed("pew-pew-lei.caf", waitForCompletion: false))
+//        //: Add sound effect
+//        run(SKAction.playSoundFileNamed("pew-pew-lei.caf", waitForCompletion: false))
         
         // 1 - Choose one of the touches to work with
         guard let touch = touches.first else {

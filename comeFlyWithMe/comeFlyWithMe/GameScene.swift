@@ -26,17 +26,7 @@ func / (point: CGPoint, scalar: CGFloat) -> CGPoint {
     return CGPoint(x: point.x / scalar, y: point.y / scalar)
 }
 
-extension CGPoint {
-    func length() -> CGFloat {
-        return sqrt(x*x + y*y)
-    }
-    
-    func normalized() -> CGPoint {
-        return self / length()
-    }
-}
-
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //: Variables that will be used
     var skyNode : SKSpriteNode      // Sky shown
@@ -48,9 +38,12 @@ class GameScene: SKScene {
     var airship : SKSpriteNode!     // Airship
     var lastFrameTime : TimeInterval = 0    // Time of last frame
     var deltaTime : TimeInterval = 0    // Time since last frame
-    let shipCategory : UInt32 = 1 << 0
-    let worldCategory : UInt32 = 1 << 1
+    let shipCategory : UInt32 = 1 << 0  // Physics body category for airship
+    let balloonCategory : UInt32 = 1 << 1   // Physics body category for balloon
     var gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, 0, 0)) // Vertical gravity vector
+    var totalScore = 0
+    var totalHighFives = 0
+    var totalBalloons = 0
     
     override init(size: CGSize) {
         //: Check for current time
@@ -149,7 +142,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         //: Setup physics
         self.physicsWorld.gravity = CGVector(dx: -1.0, dy: 0)
-        
+        self.physicsWorld.contactDelegate = self
         
         //: Add player's airship
         airship = SKSpriteNode(imageNamed: "myShip")
@@ -178,6 +171,18 @@ class GameScene: SKScene {
         ))
     }
     
+    //: Action when user touches the screen (moves the airship)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //: Use only one touch point
+        guard let touch = touches.first else {
+            return
+        }
+        airship.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        let touchLocation = touch.location(in: self)
+        let offset = touchLocation - airship.position
+        airship.physicsBody?.applyImpulse(CGVector(dx: offset.x, dy: offset.y))
+    }
+    
     //: Helper functions for generating random floats
     func random() -> CGFloat {
         return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
@@ -194,15 +199,19 @@ class GameScene: SKScene {
         if randBall == 0 {
             balloon = SKSpriteNode(imageNamed: "hotAir")
             balloon.setScale(0.28)
+            balloon.name = "friend"
         } else if randBall >= 1 && randBall < 3 {
             balloon = SKSpriteNode(imageNamed: "pinkBalloon")
             balloon.setScale(0.15)
+            balloon.name = "pink"
         } else if randBall >= 3 && randBall < 6 {
             balloon = SKSpriteNode(imageNamed: "yellowBalloon")
             balloon.setScale(0.15)
+            balloon.name = "yellow"
         } else {
             balloon = SKSpriteNode(imageNamed: "redBalloon")
             balloon.setScale(0.15)
+            balloon.name = "red"
         }
         
         //: Determine where to put the balloon on the Y-axis
@@ -218,7 +227,6 @@ class GameScene: SKScene {
         let balloonSpeed = random(min: CGFloat(2.0), max: CGFloat(4.0))
         
         //: Balloon actions
-        
             //: Move from right to left
         let balloonMove = SKAction.move(to: CGPoint(x: -balloon.size.width/2, y: yPosition), duration: TimeInterval(balloonSpeed))
             //: Remove balloon at the end of its lifecycle
@@ -226,19 +234,38 @@ class GameScene: SKScene {
         
             //: Queue up the balloon actions and execute
         balloon.run(SKAction.sequence([balloonMove, balloonPop]))
+        
+        //: Give balloon a physics body to detect collisions
+        balloon.physicsBody = SKPhysicsBody(rectangleOf: balloon.size)
+        balloon.physicsBody?.isDynamic = false
+        balloon.physicsBody?.categoryBitMask = balloonCategory
+        balloon.physicsBody?.contactTestBitMask = shipCategory
     }
     
-    //: Action when user touches the screen (moves the airship)
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //: Use only one touch point
-        guard let touch = touches.first else {
-            return
+    //: Helper function for when collision is detected between ship and balloon
+    func shipHitBalloon(balloon: SKSpriteNode) {
+        print ("Collided with a \(balloon.name)")
+        balloon.removeFromParent()
+    }
+    
+    //: Contact delegate method
+    func didBegin(_ contact: SKPhysicsContact) {
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
         }
-        airship.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        let touchLocation = touch.location(in: self)
-//        print (touchLocation.x, touchLocation.y)
-        let offset = touchLocation - airship.position
-        airship.physicsBody?.applyImpulse(CGVector(dx: offset.x, dy: offset.y))
+        if ((firstBody.categoryBitMask & shipCategory != 0) &&
+            (secondBody.categoryBitMask & balloonCategory != 0)) {
+            if let _ = firstBody.node as? SKSpriteNode, let
+                balloon = secondBody.node as? SKSpriteNode {
+                shipHitBalloon(balloon: balloon)
+            }
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -257,22 +284,17 @@ class GameScene: SKScene {
         
         // Check position of the airship and modify the vertical gravity vector as needed
         if Int(airship.position.y) > Int(size.height*0.55) {
-            print ("Above")
             gravityVectorY.removeFromParent()
             gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, -1, 0))
         } else if Int(airship.position.y) < Int(size.height*0.45) {
-            print ("Below")
             gravityVectorY.removeFromParent()
             gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, 1, 0))
         } else {
-            print ("At the midpoint")
             gravityVectorY.removeFromParent()
             gravityVectorY = SKFieldNode.linearGravityField(withVector: vector_float3(0, 0, 0))
         }
         gravityVectorY.strength = 1.0
         addChild(gravityVectorY)
-        
-//        print (airship.position.y)    // For debugging
         
         // Next, move each of the layers.
         // Objects that should appear move slower than foreground objects.
