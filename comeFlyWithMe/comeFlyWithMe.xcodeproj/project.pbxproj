@@ -17,6 +17,8 @@
 		CE9B0D2B1E74F99900C0FD0F /* warm_breeze.caf in Resources */ = {isa = PBXBuildFile; fileRef = CE9B0D281E74F99900C0FD0F /* warm_breeze.caf */; };
 		CE9B0D2C1E74F99900C0FD0F /* yay.caf in Resources */ = {isa = PBXBuildFile; fileRef = CE9B0D291E74F99900C0FD0F /* yay.caf */; };
 		CE9B0D2F1E74FA4F00C0FD0F /* bell.caf in Resources */ = {isa = PBXBuildFile; fileRef = CE9B0D2E1E74FA4F00C0FD0F /* bell.caf */; };
+		CE9B0D321E753B5000C0FD0F /* StartMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B0D311E753B5000C0FD0F /* StartMenu.swift */; };
+		CE9B0D341E753B6F00C0FD0F /* GameStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B0D331E753B6F00C0FD0F /* GameStart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		CE9B0D281E74F99900C0FD0F /* warm_breeze.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = warm_breeze.caf; sourceTree = "<group>"; };
 		CE9B0D291E74F99900C0FD0F /* yay.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = yay.caf; sourceTree = "<group>"; };
 		CE9B0D2E1E74FA4F00C0FD0F /* bell.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bell.caf; sourceTree = "<group>"; };
+		CE9B0D311E753B5000C0FD0F /* StartMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartMenu.swift; sourceTree = "<group>"; };
+		CE9B0D331E753B6F00C0FD0F /* GameStart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 				CE7C2FE71E73E543001A5D48 /* Sounds */,
 				CE7C2FCB1E7367D2001A5D48 /* AppDelegate.swift */,
 				CE7C2FD11E7367D2001A5D48 /* GameScene.swift */,
+				CE9B0D301E753B1900C0FD0F /* Game States */,
 				CE7C2FD31E7367D2001A5D48 /* GameViewController.swift */,
 				CE7C2FD51E7367D2001A5D48 /* Main.storyboard */,
 				CE7C2FD81E7367D2001A5D48 /* Assets.xcassets */,
@@ -85,6 +90,15 @@
 				CE9B0D291E74F99900C0FD0F /* yay.caf */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		CE9B0D301E753B1900C0FD0F /* Game States */ = {
+			isa = PBXGroup;
+			children = (
+				CE9B0D311E753B5000C0FD0F /* StartMenu.swift */,
+				CE9B0D331E753B6F00C0FD0F /* GameStart.swift */,
+			);
+			name = "Game States";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,8 +178,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE7C2FD21E7367D2001A5D48 /* GameScene.swift in Sources */,
+				CE9B0D321E753B5000C0FD0F /* StartMenu.swift in Sources */,
 				CE7C2FD41E7367D2001A5D48 /* GameViewController.swift in Sources */,
 				CE7C2FCC1E7367D2001A5D48 /* AppDelegate.swift in Sources */,
+				CE9B0D341E753B6F00C0FD0F /* GameStart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
