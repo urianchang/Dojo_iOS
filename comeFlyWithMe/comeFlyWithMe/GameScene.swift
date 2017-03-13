@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 import CoreMotion
 
-let sounds = false  //: Variable to enable/disable sounds
+let sounds = true  //: Variable to enable/disable sounds
 var userShip : Int = 0 //: Variable to keep track of which ship the user has selected ('0' means no ship has been selected)
 
 //: Start menu
@@ -21,6 +21,7 @@ class StartMenu: SKScene {
     var shipSelect2 = SKSpriteNode(imageNamed: "myKite")
 
     override init (size: CGSize) {
+        userShip = 0
         let bg = SKSpriteNode(imageNamed: "daySky")
         bg.size = size
         bg.position = CGPoint(x: size.width/2, y: size.height/2)
