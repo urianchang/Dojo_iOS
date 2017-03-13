@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 import CoreMotion
 
-let sounds = true  //: Variable to enable/disable sounds
+let sounds = false  //: Variable to enable/disable sounds
 var userShip : Int = 0 //: Variable to keep track of which ship the user has selected ('0' means no ship has been selected)
 
 //: Start menu
@@ -32,7 +32,6 @@ class StartMenu: SKScene {
             backgroundMusic.autoplayLooped = true
             addChild(backgroundMusic)
         }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -157,6 +156,7 @@ class GameScene2: SKScene, SKPhysicsContactDelegate {
     var balloonsLabelNode : SKLabelNode! // Balloon counter label
     let motionTracker = CMMotionManager() //Tracker for motion
     var angleY : CGFloat = 0.0 //Y-position based off of accelerometer
+    var exitLabelNode : SKSpriteNode! // Label for exiting the game
     
     override init(size: CGSize) {
         //: Check for current time
@@ -297,10 +297,15 @@ class GameScene2: SKScene, SKPhysicsContactDelegate {
         highFiveLabelNode.fontSize = 18.0
         highFiveLabelNode.position = CGPoint(x: self.frame.width - highFiveLabelNode.frame.maxX, y: 8)
         
+        exitLabelNode = SKSpriteNode(imageNamed: "close_btn")
+        exitLabelNode.setScale(0.10)
+        exitLabelNode.position = CGPoint(x: exitLabelNode.frame.maxX, y: self.frame.height-exitLabelNode.frame.maxY)
+        
         //: Add the labels
         addChild(scoreLabelNode)
         addChild(balloonsLabelNode)
         addChild(highFiveLabelNode)
+        addChild(exitLabelNode)
         
         //: Initialize motion tracker
         self.motionTracker.startAccelerometerUpdates()
@@ -308,9 +313,17 @@ class GameScene2: SKScene, SKPhysicsContactDelegate {
     
     //: Action when user touches the screen (gives the kite a push)
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let ypos = angleY
-        kite.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        kite.physicsBody?.applyImpulse(CGVector(dx: 15, dy: ypos))
+        let touchPoint = touches.first?.location(in: self)
+        if self.atPoint(touchPoint!) == exitLabelNode {
+            print ("Exit button pressed")
+            let reveal = SKTransition.flipHorizontal(withDuration: 0.3)
+            let startMenu = StartMenu(size: self.size)
+            self.view?.presentScene(startMenu, transition: reveal)
+        } else {
+            let ypos = angleY
+            kite.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            kite.physicsBody?.applyImpulse(CGVector(dx: 15, dy: ypos))
+        }
     }
     
     //: Helper functions for generating random floats
@@ -507,6 +520,7 @@ class GameScene1: SKScene, SKPhysicsContactDelegate {
     var highFiveLabelNode : SKLabelNode! // High-five counter label
     var totalBalloons = 0   // Total balloons saved
     var balloonsLabelNode : SKLabelNode! // Balloon counter label
+    var exitLabelNode : SKSpriteNode! // Label for exiting the game
     
     override init(size: CGSize) {
         //: Check for current time
@@ -652,11 +666,15 @@ class GameScene1: SKScene, SKPhysicsContactDelegate {
         highFiveLabelNode.fontSize = 18.0
         highFiveLabelNode.position = CGPoint(x: self.frame.width - highFiveLabelNode.frame.maxX, y: 8)
         
+        exitLabelNode = SKSpriteNode(imageNamed: "close_btn")
+        exitLabelNode.setScale(0.10)
+        exitLabelNode.position = CGPoint(x: exitLabelNode.frame.maxX, y: self.frame.height-exitLabelNode.frame.maxY)
+        
         //: Add the labels
         addChild(scoreLabelNode)
         addChild(balloonsLabelNode)
         addChild(highFiveLabelNode)
-        
+        addChild(exitLabelNode)
     }
     
     //: Action when user touches the screen (moves the airship)
@@ -665,10 +683,17 @@ class GameScene1: SKScene, SKPhysicsContactDelegate {
         guard let touch = touches.first else {
             return
         }
-        airship.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         let touchLocation = touch.location(in: self)
-        let offset = touchLocation - airship.position
-        airship.physicsBody?.applyImpulse(CGVector(dx: offset.x, dy: offset.y))
+        if self.atPoint(touchLocation) == exitLabelNode {
+            print ("Exit button pressed")
+            let reveal = SKTransition.flipHorizontal(withDuration: 0.3)
+            let startMenu = StartMenu(size: self.size)
+            self.view?.presentScene(startMenu, transition: reveal)
+        } else {
+            airship.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            let offset = touchLocation - airship.position
+            airship.physicsBody?.applyImpulse(CGVector(dx: offset.x, dy: offset.y))
+        }
     }
     
     //: Helper functions for generating random floats
