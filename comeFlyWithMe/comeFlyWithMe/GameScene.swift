@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 import CoreMotion
 
-let sounds = false  //: Variable to enable/disable sounds
+let sounds = true  //: Variable to enable/disable sounds
 var userShip : Int = 0 //: Variable to keep track of which ship the user has selected ('0' means no ship has been selected)
 
 //: Start menu
@@ -451,7 +451,7 @@ class GameScene2: SKScene, SKPhysicsContactDelegate {
         
         //: Let's see the accelerometer data...
         if let accelerometer_data = self.motionTracker.accelerometerData {
-            print ("Accel data: \(accelerometer_data)")
+            //print ("Accel data: \(accelerometer_data)")
             angleY = CGFloat(accelerometer_data.acceleration.y * (-50))
         }
         
