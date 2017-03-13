@@ -8,7 +8,7 @@
 
 import SpriteKit
 import GameplayKit
-
+import CoreMotion
 
 let sounds = false  //: Variable to enable/disable sounds
 var userShip : Int = 0 //: Variable to keep track of which ship the user has selected ('0' means no ship has been selected)
@@ -39,7 +39,7 @@ class StartMenu: SKScene {
         shipSelect2.position = CGPoint(x: frame.midX + shipSelect2.frame.maxX+10, y: frame.midY)
         
         //: Create start text
-        startText.text = "Please choose a plane"
+        startText.text = "Please choose"
         startText.fontSize = 40
         startText.fontColor = UIColor.orange
         startText.position = CGPoint(x: frame.midX, y: startText.frame.height)
@@ -129,6 +129,8 @@ class GameScene2: SKScene, SKPhysicsContactDelegate {
     var highFiveLabelNode : SKLabelNode! // High-five counter label
     var totalBalloons = 0   // Total balloons saved
     var balloonsLabelNode : SKLabelNode! // Balloon counter label
+    let motionTracker = CMMotionManager() //Tracker for motion
+    var angleY : CGFloat = 0.0 //Y-position based off of accelerometer
     
     override init(size: CGSize) {
         //: Check for current time
@@ -223,7 +225,7 @@ class GameScene2: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         print ("Game started with ship \(userShip)")
         //: Setup physics p.I
-        self.physicsWorld.gravity = CGVector(dx: -1.0, dy: 0)
+        self.physicsWorld.gravity = CGVector(dx: -2.0, dy: 0)
         self.physicsWorld.contactDelegate = self
         
         //: Add kite
@@ -274,18 +276,15 @@ class GameScene2: SKScene, SKPhysicsContactDelegate {
         addChild(balloonsLabelNode)
         addChild(highFiveLabelNode)
         
+        //: Initialize motion tracker
+        self.motionTracker.startAccelerometerUpdates()
     }
     
-    //: Action when user touches the screen (moves the airship)
+    //: Action when user touches the screen (gives the kite a push)
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //: Use only one touch point
-        guard let touch = touches.first else {
-            return
-        }
+        let ypos = angleY
         kite.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        let touchLocation = touch.location(in: self)
-        let offset = touchLocation - kite.position
-        kite.physicsBody?.applyImpulse(CGVector(dx: offset.x, dy: offset.y))
+        kite.physicsBody?.applyImpulse(CGVector(dx: 15, dy: ypos))
     }
     
     //: Helper functions for generating random floats
@@ -430,6 +429,12 @@ class GameScene2: SKScene, SKPhysicsContactDelegate {
         
         // Set last frame time to current time
         lastFrameTime = currentTime
+        
+        //: Let's see the accelerometer data...
+        if let accelerometer_data = self.motionTracker.accelerometerData {
+            print ("Accel data: \(accelerometer_data)")
+            angleY = CGFloat(accelerometer_data.acceleration.y * (-50))
+        }
         
         // Check position of the airship and modify the vertical gravity vector as needed
         if Int(kite.position.y) > Int(size.height*0.55) {
