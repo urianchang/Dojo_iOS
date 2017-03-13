@@ -26,6 +26,13 @@ class StartMenu: SKScene {
         bg.position = CGPoint(x: size.width/2, y: size.height/2)
         super.init(size: size)
         addChild(bg)
+        
+        if sounds {
+            let backgroundMusic = SKAudioNode(fileNamed: "acousticbreeze.caf")
+            backgroundMusic.autoplayLooped = true
+            addChild(backgroundMusic)
+        }
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
