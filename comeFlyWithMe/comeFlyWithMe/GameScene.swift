@@ -17,31 +17,41 @@ var userShip : Int = 0 //: Variable to keep track of which ship the user has sel
 class StartMenu: SKScene {
     var welcomeText = SKLabelNode(fontNamed: "Zapfino")
     var startText = SKLabelNode(fontNamed: "Chalkduster")
-    var shipSelect1 = SKSpriteNode(imageNamed: "dirigible_icon")
-    var shipSelect2 = SKSpriteNode(imageNamed: "kite_icon")
+    var shipSelect1 = SKSpriteNode(imageNamed: "myShip")
+    var shipSelect2 = SKSpriteNode(imageNamed: "myKite")
 
+    override init (size: CGSize) {
+        let bg = SKSpriteNode(imageNamed: "daySky")
+        bg.size = size
+        bg.position = CGPoint(x: size.width/2, y: size.height/2)
+        super.init(size: size)
+        addChild(bg)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func didMove(to view: SKView) {
         //: Create welcome text
         welcomeText.text = "Let's fly away"
         welcomeText.fontSize = 40
-        welcomeText.fontColor = UIColor.white
+        welcomeText.fontColor = UIColor.black
         welcomeText.position = CGPoint(x: frame.midX, y: frame.height - welcomeText.frame.maxY)
         
         //: Create ship selectors
             //: 1. Dirigible
         shipSelect1.setScale(0.20)
-        shipSelect1.color = UIColor.red
         shipSelect1.position = CGPoint(x: frame.midX - shipSelect1.frame.maxX-10, y: frame.midY)
 
             //: 2. Kite
         shipSelect2.setScale(0.20)
-        shipSelect2.color = UIColor.red
         shipSelect2.position = CGPoint(x: frame.midX + shipSelect2.frame.maxX+10, y: frame.midY)
         
         //: Create start text
         startText.text = "Please choose"
         startText.fontSize = 40
-        startText.fontColor = UIColor.orange
+        startText.fontColor = UIColor.red
         startText.position = CGPoint(x: frame.midX, y: startText.frame.height)
         
         self.addChild(welcomeText)
@@ -58,6 +68,13 @@ class StartMenu: SKScene {
             ])
         let flash = SKAction.repeatForever(fadeSeq)
         
+        //: Shaking animation
+        let rotate1 = SKAction.rotate(byAngle: -0.07, duration: 0.1)
+        let rotate2 = SKAction.rotate(byAngle: 0.0, duration: 0.1)
+        let rotate3 = SKAction.rotate(byAngle: 0.07, duration: 0.1)
+        let shake_seq = SKAction.sequence([rotate1, rotate2, rotate3])
+        let shake = SKAction.repeatForever(shake_seq)
+
         //: Only want to detect the first touch
         guard let touch = touches.first else {
             return
@@ -67,15 +84,17 @@ class StartMenu: SKScene {
         //: When user selects dirigible
         if self.atPoint(location) == self.shipSelect1 {
             userShip = 1
-            shipSelect2.colorBlendFactor = 0.0
-            shipSelect1.colorBlendFactor = 0.5
+            shipSelect1.removeAllActions()
+            shipSelect2.removeAllActions()
+            shipSelect1.run(shake)
         }
         
         //: When user selects paper airplane
         if self.atPoint(location) == self.shipSelect2 {
             userShip = 2
-            shipSelect1.colorBlendFactor = 0.0
-            shipSelect2.colorBlendFactor = 0.5
+            shipSelect2.removeAllActions()
+            shipSelect1.removeAllActions()
+            shipSelect2.run(shake)
         }
         
         //: When user makes any selection
