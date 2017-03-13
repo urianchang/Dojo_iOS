@@ -310,6 +310,15 @@ class GameScene2: SKScene, SKPhysicsContactDelegate {
         
         //: Initialize motion tracker
         self.motionTracker.startAccelerometerUpdates()
+        
+        //: Add particles to kite
+        if let shipTrail = SKEmitterNode(fileNamed: "shipTrail") {
+            kite.zPosition = 10
+            shipTrail.particleZPosition = 1
+            shipTrail.targetNode = self
+            kite.addChild(shipTrail)
+        }
+        
     }
     
     //: Action when user touches the screen (gives the kite a push)
@@ -676,6 +685,14 @@ class GameScene1: SKScene, SKPhysicsContactDelegate {
         addChild(balloonsLabelNode)
         addChild(highFiveLabelNode)
         addChild(exitLabelNode)
+        
+        //: Add particles to ship
+        if let shipTrail = SKEmitterNode(fileNamed: "shipTrail") {
+            airship.zPosition = 10
+            shipTrail.particleZPosition = 1
+            shipTrail.targetNode = self
+            airship.addChild(shipTrail)
+        }
     }
     
     //: Action when user touches the screen (moves the airship)
