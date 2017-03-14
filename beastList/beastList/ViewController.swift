@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var tasks = ["Something cool", "Something very cool", "Something extremely cool"]
     
@@ -21,21 +21,13 @@ class ViewController: UIViewController {
         taskTextField.text = ""
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        tableView.dataSource = self
+    //: What happens when table row is selected
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print ("Section: \(indexPath.section) and Row: \(indexPath.row)")
+        tasks.remove(at: indexPath.row)
+        tableView.reloadData()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
-}
-
-extension ViewController: UITableViewDataSource {
+    
     //: How many cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
@@ -50,4 +42,20 @@ extension ViewController: UITableViewDataSource {
         
         return cell
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+
 }
+
+
