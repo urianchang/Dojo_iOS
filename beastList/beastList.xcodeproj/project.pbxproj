@@ -96,8 +96,7 @@
 				TargetAttributes = {
 					CE364D441E77154000FD83D2 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 6E7V4VW85H;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -259,7 +258,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6E7V4VW85H;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = beastList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingdojo.uchang.beastList;
@@ -272,7 +271,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6E7V4VW85H;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = beastList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingdojo.uchang.beastList;
@@ -300,6 +299,7 @@
 				CE364D591E77154100FD83D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
