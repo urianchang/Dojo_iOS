@@ -9,14 +9,18 @@
 import UIKit
 
 class OtherViewController: UIViewController {
+    
     @IBAction func dismissButtonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBOutlet weak var textLabel: UILabel!
+    
+    var output : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        textLabel.text = output
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +28,7 @@ class OtherViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
 
     /*
     // MARK: - Navigation
