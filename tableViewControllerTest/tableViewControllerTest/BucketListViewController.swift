@@ -12,7 +12,7 @@ class BucketListViewController: UITableViewController, AddItemTableViewControlle
     var items = ["Go to Moon", "Eat a candybar", "Swim in the Amazon", "Ride a motorbike in Tokyo"]
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "EditItemSegue", sender: nil)
+        performSegue(withIdentifier: "EditItemSegue", sender: sender)
     }
 
     override func viewDidLoad() {
@@ -51,8 +51,7 @@ class BucketListViewController: UITableViewController, AddItemTableViewControlle
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print ("segue pressed")
-        print(sender)
+
 //        if segue.identifier == "AddItemSegue" {
 //            print (sender)
 //            let navigationController = segue.destination as! UINavigationController
@@ -73,22 +72,21 @@ class BucketListViewController: UITableViewController, AddItemTableViewControlle
         let addItemTableViewController = navigationController.topViewController as! addItemTableViewController
         addItemTableViewController.delegate = self
         
-        if sender != nil {
-            let indexPath = sender as! NSIndexPath
-            let item = items[indexPath.row]
+        if let senderobj = sender as? NSIndexPath {
+            let item = items[senderobj.row]
             addItemTableViewController.item = item
-            addItemTableViewController.indexPath = indexPath
+            addItemTableViewController.indexPath = senderobj
         }
 
     }
     
     func cancelButtonPressed(by controller: addItemTableViewController) {
-        print ("I am the hidden controller, but I am responding to the cancel button press on the top view controller.")
+//        print ("I am the hidden controller, but I am responding to the cancel button press on the top view controller.")
         dismiss(animated: true, completion: nil)
     }
     
     func itemSaved(by controller: addItemTableViewController, with text: String, at indexPath: NSIndexPath?) {
-        print ("Received text from top view: \(text)")
+//        print ("Received text from top view: \(text)")
         
         if let ip = indexPath {
             items[ip.row] = text
