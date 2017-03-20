@@ -47,3 +47,23 @@ Advantages of Core Data:
 =================
 | Code Snippets |
 =================
+
+Before we commit our request to Core Data, we first need to write what we want
+(retrieve or save) in NSManagedObject:
+
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+Create New Entity:
+
+    let thing = NSEntityDescription.insertNewObject(forEntityName: "OurCustomEntityName", into: managedObjectContext) as! OurCustomEntityName
+
+Fetch All Items:
+
+    let itemRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AwesomeEntity")
+
+Try-catch for throwing functions...
+    do{
+        try context.save()
+    catch{
+        print(error)
+    }
