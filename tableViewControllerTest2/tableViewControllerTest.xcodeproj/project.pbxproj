@@ -14,7 +14,7 @@
 		CE59CC9A1E78703500CBE517 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE59CC981E78703500CBE517 /* LaunchScreen.storyboard */; };
 		CE59CCA21E789F9300CBE517 /* addItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59CCA11E789F9300CBE517 /* addItemTableViewController.swift */; };
 		CE59CCA61E78A25D00CBE517 /* AdditemTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59CCA51E78A25D00CBE517 /* AdditemTableViewControllerDelegate.swift */; };
-		CE8FD8D91E808FC80083CDDE /* BucketList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD8D71E808FC80083CDDE /* BucketList.xcdatamodeld */; };
+		CE8FD8FC1E8095D90083CDDE /* BucketList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD8D71E808FC80083CDDE /* BucketList.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -147,7 +147,7 @@
 			files = (
 				CE59CC921E78703500CBE517 /* BucketListViewController.swift in Sources */,
 				CE59CC901E78703500CBE517 /* AppDelegate.swift in Sources */,
-				CE8FD8D91E808FC80083CDDE /* BucketList.xcdatamodeld in Sources */,
+				CE8FD8FC1E8095D90083CDDE /* BucketList.xcdatamodeld in Sources */,
 				CE59CCA21E789F9300CBE517 /* addItemTableViewController.swift in Sources */,
 				CE59CCA61E78A25D00CBE517 /* AdditemTableViewControllerDelegate.swift in Sources */,
 			);

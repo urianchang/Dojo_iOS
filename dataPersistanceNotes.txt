@@ -43,3 +43,7 @@ Advantages of Core Data:
   * Core Data comes with a nice graphical object model editor that can help you
     think through your object/entity design, and refine it as you go.
   * Supports migration.
+
+=================
+| Code Snippets |
+=================
