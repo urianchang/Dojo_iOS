@@ -43,10 +43,14 @@
                     <navigationItem key="navigationItem" id="Gje-ry-lNg">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Rdw-N7-VY2">
                             <connections>
+                                <action selector="composeButtonPressed:" destination="BYZ-38-t0r" id="qfM-0m-Emm"/>
                                 <segue destination="jVW-h2-MMG" kind="presentation" identifier="ComposeSegue" id="Rec-Fp-2ff"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="madLibsTextLabel" destination="yMt-VQ-Imp" id="fAL-Zx-hWm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -114,6 +118,9 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="aO5-cN-Kga" eventType="touchUpInside" id="ru0-aX-BH0"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -133,6 +140,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TkM-Q5-6qi"/>
+                    <connections>
+                        <outlet property="adjectiveTextField" destination="8bc-y4-1Nm" id="vWw-N6-hn7"/>
+                        <outlet property="nounTextField" destination="Dsc-D6-dNv" id="bB2-FX-tdI"/>
+                        <outlet property="verb1TextField" destination="Cc7-op-9CY" id="Kbe-Kh-Tli"/>
+                        <outlet property="verb2TextField" destination="TtO-CC-y3B" id="3UG-zu-6t9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b10-V7-QgB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

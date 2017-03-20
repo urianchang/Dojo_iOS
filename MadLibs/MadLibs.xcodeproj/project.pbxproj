@@ -13,6 +13,7 @@
 		CEDABE391E7F5EAB00FF1E28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEDABE381E7F5EAB00FF1E28 /* Assets.xcassets */; };
 		CEDABE3C1E7F5EAB00FF1E28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEDABE3A1E7F5EAB00FF1E28 /* LaunchScreen.storyboard */; };
 		CEDABE461E7FB8D600FF1E28 /* AddWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDABE451E7FB8D600FF1E28 /* AddWordsViewController.swift */; };
+		CEDABE481E7FBA6900FF1E28 /* SubmitWordsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDABE471E7FBA6900FF1E28 /* SubmitWordsDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		CEDABE3B1E7F5EAB00FF1E28 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEDABE3D1E7F5EAB00FF1E28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEDABE451E7FB8D600FF1E28 /* AddWordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWordsViewController.swift; sourceTree = "<group>"; };
+		CEDABE471E7FBA6900FF1E28 /* SubmitWordsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitWordsDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +58,10 @@
 		CEDABE301E7F5EAB00FF1E28 /* MadLibs */ = {
 			isa = PBXGroup;
 			children = (
+				CEDABE331E7F5EAB00FF1E28 /* ViewController.swift */,
 				CEDABE451E7FB8D600FF1E28 /* AddWordsViewController.swift */,
 				CEDABE311E7F5EAB00FF1E28 /* AppDelegate.swift */,
-				CEDABE331E7F5EAB00FF1E28 /* ViewController.swift */,
+				CEDABE471E7FBA6900FF1E28 /* SubmitWordsDelegate.swift */,
 				CEDABE351E7F5EAB00FF1E28 /* Main.storyboard */,
 				CEDABE381E7F5EAB00FF1E28 /* Assets.xcassets */,
 				CEDABE3A1E7F5EAB00FF1E28 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 			files = (
 				CEDABE341E7F5EAB00FF1E28 /* ViewController.swift in Sources */,
 				CEDABE321E7F5EAB00FF1E28 /* AppDelegate.swift in Sources */,
+				CEDABE481E7FBA6900FF1E28 /* SubmitWordsDelegate.swift in Sources */,
 				CEDABE461E7FB8D600FF1E28 /* AddWordsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
