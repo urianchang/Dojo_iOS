@@ -1,0 +1,45 @@
+Data Persistence:
+
+Many ways to persist data in an iOS app:
+  * NSUserDefaults
+    - Very easy to use, but generally reserved for small pieces of data like
+    settings and user preferences. Should not be used for storing any core
+    data for your application. Data is stored on the device.
+
+  * NSCoding
+    - A method of persisting data where you encode data and save it in a file.
+    Gives great control over how the data is structured, but may not be the best
+    option when dealing with relational data. Data is stored on the device.
+
+  * Core Data
+    - An iOS framework that uses an OOP style for storing and modeling data. A robust
+    and relatively easy solution to implement for larger data sets and relational data.
+    Data is stored on the device.
+
+  * Back-end API Server
+    - Using the full force of a back-end API server allows one to have full control
+    over their database and use any database (MySQL, MongoDB, PostgreSQL, etc.).
+    Relies on an internet connection. Data is not stored on the device.
+
+Core Data is hardware-agnostic. Runtime support is available on the same processors that
+MacOS X and iOS support. Plus, Core Data works directly with SQLite, the public-domain
+database engine bundled with MacOS X and iOS.
+
+We can save data on to a .plists file. Although useful, we would not consider plists for
+anything other than saving simple preferences and really basic data such as remembering
+preferred default language, audio/video preferences, default templates, etc.
+Performance wise, retrieving and saving data to plists can be quite slow.
+
+Advantages of Core Data:
+  * Core Data manages to save and undo functionality for you.
+    It has a persistent store, which tracks changes, and can be flushed to the
+    disk automatically at any number of times (app close, etc.).
+  * Core Data and related classes provide easy ways to get your entities into
+    UITableViews, like NSFetchedResultsController.
+  * Core Data abstracts away a lot of the messy things you'd otherwise have to
+    deal with yourself, such as lists of objects, one-to-many or many-to-many
+    relationships, or constraints on object attributes, into a single nice clean
+    object-oriented interface.
+  * Core Data comes with a nice graphical object model editor that can help you
+    think through your object/entity design, and refine it as you go.
+  * Supports migration.
