@@ -34,13 +34,51 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="627"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomCell" id="dok-V1-DMM">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomCell" id="dok-V1-DMM" customClass="CustomCell" customModule="binaryCounter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dok-V1-DMM" id="8vq-Si-Rx1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0t-Ce-bGd">
+                                                    <rect key="frame" x="8" y="6" width="30" height="30"/>
+                                                    <state key="normal" title="-"/>
+                                                    <connections>
+                                                        <action selector="subtractPressed:" destination="dok-V1-DMM" eventType="touchUpInside" id="tAv-0K-CtT"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWp-1y-o1y">
+                                                    <rect key="frame" x="337" y="7" width="30" height="30"/>
+                                                    <state key="normal" title="+"/>
+                                                    <connections>
+                                                        <action selector="addPressed:" destination="dok-V1-DMM" eventType="touchUpInside" id="ugt-TM-yvk"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrE-US-vBW">
+                                                    <rect key="frame" x="46" y="11" width="283" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OWp-1y-o1y" firstAttribute="leading" secondItem="GrE-US-vBW" secondAttribute="trailing" constant="8" id="9Ei-pr-OsD"/>
+                                                <constraint firstItem="n0t-Ce-bGd" firstAttribute="leading" secondItem="8vq-Si-Rx1" secondAttribute="leading" constant="8" id="Ffb-op-qTc"/>
+                                                <constraint firstAttribute="trailing" secondItem="OWp-1y-o1y" secondAttribute="trailing" constant="8" id="Mna-tP-b2x"/>
+                                                <constraint firstItem="OWp-1y-o1y" firstAttribute="centerY" secondItem="8vq-Si-Rx1" secondAttribute="centerY" id="TiM-tN-i7S"/>
+                                                <constraint firstItem="GrE-US-vBW" firstAttribute="leading" secondItem="n0t-Ce-bGd" secondAttribute="trailing" constant="8" id="XwV-rb-l36"/>
+                                                <constraint firstItem="GrE-US-vBW" firstAttribute="centerY" secondItem="8vq-Si-Rx1" secondAttribute="centerY" id="Yro-wh-h8I"/>
+                                                <constraint firstItem="OWp-1y-o1y" firstAttribute="leading" secondItem="GrE-US-vBW" secondAttribute="trailing" constant="8" id="equ-oT-2X8"/>
+                                                <constraint firstItem="GrE-US-vBW" firstAttribute="leading" secondItem="n0t-Ce-bGd" secondAttribute="trailing" constant="8" id="g6p-Yc-thU"/>
+                                                <constraint firstItem="n0t-Ce-bGd" firstAttribute="centerY" secondItem="8vq-Si-Rx1" secondAttribute="centerY" id="hg2-F0-skK"/>
+                                                <constraint firstItem="OWp-1y-o1y" firstAttribute="baseline" secondItem="n0t-Ce-bGd" secondAttribute="baseline" id="kHs-uj-mha"/>
+                                                <constraint firstItem="GrE-US-vBW" firstAttribute="baseline" secondItem="n0t-Ce-bGd" secondAttribute="baseline" id="thH-k1-3I9"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="valueLabel" destination="GrE-US-vBW" id="PKa-lY-xHc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -59,6 +97,10 @@
                             <constraint firstItem="BCU-Xe-uSY" firstAttribute="top" secondItem="IIL-jU-qG5" secondAttribute="bottom" id="pCk-97-4Bn"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="IIL-jU-qG5" id="OtY-1U-gok"/>
+                        <outlet property="totalLabel" destination="BCU-Xe-uSY" id="g8i-UP-y6b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
