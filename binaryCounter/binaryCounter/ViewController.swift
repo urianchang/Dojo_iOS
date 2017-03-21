@@ -58,5 +58,6 @@ class ViewController: UIViewController, UITableViewDataSource, CustomCellButtons
         total = total - Int(cell.valueLabel.text!)!
         totalLabel.text = "Total: \(total)"
     }
+    
 }
 
