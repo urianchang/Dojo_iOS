@@ -36,6 +36,5 @@ class ViewController: UIViewController {
         destinationVC.direction = sender as! String?
     }
 
-    
 }
 

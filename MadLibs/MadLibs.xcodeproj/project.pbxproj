@@ -60,8 +60,8 @@
 			children = (
 				CEDABE331E7F5EAB00FF1E28 /* ViewController.swift */,
 				CEDABE451E7FB8D600FF1E28 /* AddWordsViewController.swift */,
-				CEDABE311E7F5EAB00FF1E28 /* AppDelegate.swift */,
 				CEDABE471E7FBA6900FF1E28 /* SubmitWordsDelegate.swift */,
+				CEDABE311E7F5EAB00FF1E28 /* AppDelegate.swift */,
 				CEDABE351E7F5EAB00FF1E28 /* Main.storyboard */,
 				CEDABE381E7F5EAB00FF1E28 /* Assets.xcassets */,
 				CEDABE3A1E7F5EAB00FF1E28 /* LaunchScreen.storyboard */,
@@ -305,6 +305,7 @@
 				CEDABE421E7F5EAB00FF1E28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
