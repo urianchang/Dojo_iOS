@@ -13,6 +13,8 @@
 		CE8FD8EF1E8093FB0083CDDE /* CoreDataRef.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD8ED1E8093FB0083CDDE /* CoreDataRef.xcdatamodeld */; };
 		CE8FD8F11E8093FB0083CDDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE8FD8F01E8093FB0083CDDE /* Assets.xcassets */; };
 		CE8FD8F41E8093FB0083CDDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8FD8F21E8093FB0083CDDE /* LaunchScreen.storyboard */; };
+		CE8FD9281E80E5EE0083CDDE /* ItemObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD9261E80E5EE0083CDDE /* ItemObject+CoreDataClass.swift */; };
+		CE8FD9291E80E5EE0083CDDE /* ItemObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8FD9271E80E5EE0083CDDE /* ItemObject+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		CE8FD8F01E8093FB0083CDDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE8FD8F31E8093FB0083CDDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE8FD8F51E8093FB0083CDDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE8FD9261E80E5EE0083CDDE /* ItemObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemObject+CoreDataClass.swift"; path = "../ItemObject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CE8FD9271E80E5EE0083CDDE /* ItemObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemObject+CoreDataProperties.swift"; path = "../ItemObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 		CE8FD8E51E8093FB0083CDDE /* CoreDataRef */ = {
 			isa = PBXGroup;
 			children = (
+				CE8FD9261E80E5EE0083CDDE /* ItemObject+CoreDataClass.swift */,
+				CE8FD9271E80E5EE0083CDDE /* ItemObject+CoreDataProperties.swift */,
 				CE8FD8E61E8093FB0083CDDE /* AppDelegate.swift */,
 				CE8FD8E81E8093FB0083CDDE /* ViewController.swift */,
 				CE8FD8EA1E8093FB0083CDDE /* Main.storyboard */,
@@ -139,9 +145,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8FD9291E80E5EE0083CDDE /* ItemObject+CoreDataProperties.swift in Sources */,
 				CE8FD8EF1E8093FB0083CDDE /* CoreDataRef.xcdatamodeld in Sources */,
 				CE8FD8E91E8093FB0083CDDE /* ViewController.swift in Sources */,
 				CE8FD8E71E8093FB0083CDDE /* AppDelegate.swift in Sources */,
+				CE8FD9281E80E5EE0083CDDE /* ItemObject+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +309,7 @@
 				CE8FD8FA1E8093FB0083CDDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
