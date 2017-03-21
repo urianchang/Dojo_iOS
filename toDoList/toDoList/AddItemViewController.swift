@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Foundation
+import CoreData
 
 class AddItemViewController: UIViewController {
 
     @IBOutlet weak var taskTitleTextField: UITextField!
     @IBOutlet weak var taskDetailTextView: UITextView!
     @IBOutlet weak var taskDatePicker: UIDatePicker!
+    
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +41,18 @@ class AddItemViewController: UIViewController {
         dateFormatter.dateFormat = "MM/dd/yy"
         let dateStr = dateFormatter.string(from: taskDatePicker.date)
         print ("Task date: \(dateStr)")
+        
+        let item = NSEntityDescription.insertNewObject(forEntityName: "ItemObject", into: managedObjectContext) as! ItemObject
+        item.title = taskTitleTextField!.text
+        item.detail = taskDetailTextView!.text
+        item.date = dateStr
+        item.completed = false
+        
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print ("\(error)")
+        }
     }
 
 }

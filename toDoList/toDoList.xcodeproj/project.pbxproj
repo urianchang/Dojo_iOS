@@ -14,6 +14,9 @@
 		CE0BCDC01E810BF500F32D12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0BCDBF1E810BF500F32D12 /* Assets.xcassets */; };
 		CE0BCDC31E810BF500F32D12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0BCDC11E810BF500F32D12 /* LaunchScreen.storyboard */; };
 		CE0BCDCB1E810F0500F32D12 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0BCDCA1E810F0500F32D12 /* AddItemViewController.swift */; };
+		CEB39EB61E81BE9C00FF04C4 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB39EB51E81BE9C00FF04C4 /* CustomCell.swift */; };
+		CEB39EB91E81C85100FF04C4 /* ItemObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB39EB71E81C85100FF04C4 /* ItemObject+CoreDataClass.swift */; };
+		CEB39EBA1E81C85100FF04C4 /* ItemObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB39EB81E81C85100FF04C4 /* ItemObject+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		CE0BCDC21E810BF500F32D12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE0BCDC41E810BF500F32D12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE0BCDCA1E810F0500F32D12 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		CEB39EB51E81BE9C00FF04C4 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		CEB39EB71E81C85100FF04C4 /* ItemObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemObject+CoreDataClass.swift"; path = "../ItemObject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CEB39EB81E81C85100FF04C4 /* ItemObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemObject+CoreDataProperties.swift"; path = "../ItemObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +64,13 @@
 		CE0BCDB41E810BF500F32D12 /* toDoList */ = {
 			isa = PBXGroup;
 			children = (
+				CEB39EB71E81C85100FF04C4 /* ItemObject+CoreDataClass.swift */,
+				CEB39EB81E81C85100FF04C4 /* ItemObject+CoreDataProperties.swift */,
 				CE0BCDB51E810BF500F32D12 /* AppDelegate.swift */,
 				CE0BCDB71E810BF500F32D12 /* ViewController.swift */,
 				CE0BCDCA1E810F0500F32D12 /* AddItemViewController.swift */,
 				CE0BCDB91E810BF500F32D12 /* Main.storyboard */,
+				CEB39EB51E81BE9C00FF04C4 /* CustomCell.swift */,
 				CE0BCDBF1E810BF500F32D12 /* Assets.xcassets */,
 				CE0BCDC11E810BF500F32D12 /* LaunchScreen.storyboard */,
 				CE0BCDC41E810BF500F32D12 /* Info.plist */,
@@ -144,6 +153,9 @@
 			files = (
 				CE0BCDB81E810BF500F32D12 /* ViewController.swift in Sources */,
 				CE0BCDCB1E810F0500F32D12 /* AddItemViewController.swift in Sources */,
+				CEB39EBA1E81C85100FF04C4 /* ItemObject+CoreDataProperties.swift in Sources */,
+				CEB39EB61E81BE9C00FF04C4 /* CustomCell.swift in Sources */,
+				CEB39EB91E81C85100FF04C4 /* ItemObject+CoreDataClass.swift in Sources */,
 				CE0BCDBE1E810BF500F32D12 /* toDoList.xcdatamodeld in Sources */,
 				CE0BCDB61E810BF500F32D12 /* AppDelegate.swift in Sources */,
 			);
@@ -305,6 +317,7 @@
 				CE0BCDC91E810BF500F32D12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
