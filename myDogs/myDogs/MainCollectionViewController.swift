@@ -103,7 +103,16 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
         performSegue(withIdentifier: "EditDogSegue", sender: indexPath)
     }
     
-    func itemSaved(by controller: EditDogViewController) {
+    func itemSaved(by controller: EditDogViewController, with dog: Dog, at indexPath: NSIndexPath?) {
+        if let ip = indexPath {
+            items[ip.row] = dog
+        }
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print ("\(error)")
+        }
+        collectionView?.reloadData()
         dismiss(animated: true, completion: nil)
     }
     
@@ -111,34 +120,6 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
         dismiss(animated: true, completion: nil)
     }
     
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }
 

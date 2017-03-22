@@ -49,7 +49,11 @@ class EditDogViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
-        delegate?.itemSaved(by: self)
+        item?.name = dogNameTextField!.text
+        item?.color = dogColorTextField!.text
+        item?.treat = dogTreatTextField!.text
+        item?.photo = UIImageJPEGRepresentation(dogProfiePic.image!, 1) as NSData?
+        delegate?.itemSaved(by: self, with: item!, at: indexPath)
     }
     
     override func viewDidLoad() {
