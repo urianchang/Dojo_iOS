@@ -12,7 +12,7 @@ class EditDogViewController: UIViewController {
 
     weak var delegate : EditDogDelegate?
     
-    var item : Int?
+    var item : Dog?
     var indexPath : NSIndexPath?
     
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {

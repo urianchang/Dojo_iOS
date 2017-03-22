@@ -14,9 +14,10 @@ private let reuseIdentifier = "Cell"
 
 class MainCollectionViewController: UICollectionViewController, EditDogDelegate {
 
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    
-    var items = [1, 2, 3, 4, 5, 6]
+//    var items = [1, 2, 3, 4, 5, 6]
+    var items = [Dog]()
     
     @IBAction func addPressed(_ sender: UIBarButtonItem) {
         print ("Add Pressed")
@@ -25,13 +26,13 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        fetchAllItems()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DogCell")
-
+        //: Commented this line out because it was throwing an error with the custom cell.
+//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DogCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,7 +68,6 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return items.count
@@ -75,17 +75,26 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DogCell", for: indexPath) as! CustomCell
-        
+        cell.dogNameLabel.text = items[indexPath.row].name
+        cell.dogProfile.image = UIImage(data: items[indexPath.row].photo as! Data)
         // Configure the cell
         cell.backgroundColor = UIColor.blue
         return cell
     }
     
-
+    func fetchAllItems() {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Dog")
+        do {
+            let result = try managedObjectContext.fetch(request)
+            items = result as! [Dog]
+        } catch {
+            print ("\(error)")
+        }
+    }
+    
     // MARK: UICollectionViewDelegate
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(items[indexPath.row])
         performSegue(withIdentifier: "EditDogSegue", sender: indexPath)
     }
     
