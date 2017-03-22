@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import Foundation
+import CoreData
 
 private let reuseIdentifier = "Cell"
 
 class MainCollectionViewController: UICollectionViewController, EditDogDelegate {
 
+    
+    
     var items = [1, 2, 3, 4, 5, 6]
     
     @IBAction func addPressed(_ sender: UIBarButtonItem) {
@@ -53,6 +57,8 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
         }
     }
 
+    @IBAction func unwindToHome(segue: UIStoryboardSegue) {
+    }
 
     // MARK: UICollectionViewDataSource
 
@@ -68,8 +74,8 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DogCell", for: indexPath)
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DogCell", for: indexPath) as! CustomCell
+        
         // Configure the cell
         cell.backgroundColor = UIColor.blue
         return cell
