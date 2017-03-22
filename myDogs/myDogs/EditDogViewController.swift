@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditDogViewController: UIViewController {
+class EditDogViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     weak var delegate : EditDogDelegate?
     
@@ -19,6 +19,21 @@ class EditDogViewController: UIViewController {
     @IBOutlet weak var dogProfiePic: UIImageView!
     
     @IBAction func dogPicPressed(_ sender: UIButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    //: UIImagePicker functions
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            dogProfiePic.contentMode = .scaleAspectFit
+            dogProfiePic.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func deletePressed(_ sender: UIButton) {
@@ -26,6 +41,8 @@ class EditDogViewController: UIViewController {
     
     var item : Dog?
     var indexPath : NSIndexPath?
+    
+    let imagePicker = UIImagePickerController()
     
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
         delegate?.itemCancel(by: self)
@@ -37,12 +54,16 @@ class EditDogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker.delegate = self
         dogNameTextField.text = item?.name
         dogColorTextField.text = item?.color
         dogTreatTextField.text = item?.treat
         dogProfiePic.image = UIImage(data: item?.photo as! Data)
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -27,7 +27,6 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAllItems()
-        print ("ViewDidLoad")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,7 +36,6 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        print ("ViewWillAppear")
         fetchAllItems()
         collectionView?.reloadData()
     }
