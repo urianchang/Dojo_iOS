@@ -12,6 +12,18 @@ class EditDogViewController: UIViewController {
 
     weak var delegate : EditDogDelegate?
     
+    @IBOutlet weak var dogNameTextField: UITextField!
+    @IBOutlet weak var dogColorTextField: UITextField!
+    @IBOutlet weak var dogTreatTextField: UITextField!
+    
+    @IBOutlet weak var dogProfiePic: UIImageView!
+    
+    @IBAction func dogPicPressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func deletePressed(_ sender: UIButton) {
+    }
+    
     var item : Dog?
     var indexPath : NSIndexPath?
     
@@ -25,8 +37,10 @@ class EditDogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        dogNameTextField.text = item?.name
+        dogColorTextField.text = item?.color
+        dogTreatTextField.text = item?.treat
+        dogProfiePic.image = UIImage(data: item?.photo as! Data)
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,15 +48,4 @@ class EditDogViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
