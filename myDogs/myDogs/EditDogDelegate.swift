@@ -10,4 +10,5 @@ import Foundation
 protocol EditDogDelegate: class {
     func itemSaved(by controller: EditDogViewController, with dog: Dog, at: NSIndexPath?)
     func itemCancel(by controller: EditDogViewController)
+    func itemDelete(by controller: EditDogViewController, at: NSIndexPath?)
 }

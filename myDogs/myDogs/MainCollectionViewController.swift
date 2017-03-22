@@ -120,6 +120,19 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
         dismiss(animated: true, completion: nil)
     }
     
+    func itemDelete(by controller: EditDogViewController, at indexPath: NSIndexPath?) {
+        if let ip = indexPath {
+            managedObjectContext.delete(items[ip.row])
+            items.remove(at: ip.row)
+        }
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print ("\(error)")
+        }
+        collectionView?.reloadData()
+        dismiss(animated: true, completion: nil)
+    }
 
 }
 

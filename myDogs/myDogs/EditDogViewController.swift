@@ -37,6 +37,7 @@ class EditDogViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func deletePressed(_ sender: UIButton) {
+        delegate?.itemDelete(by: self, at: indexPath)
     }
     
     var item : Dog?
@@ -63,9 +64,6 @@ class EditDogViewController: UIViewController, UIImagePickerControllerDelegate, 
         dogColorTextField.text = item?.color
         dogTreatTextField.text = item?.treat
         dogProfiePic.image = UIImage(data: item?.photo as! Data)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
     }
     
     override func didReceiveMemoryWarning() {
