@@ -27,6 +27,7 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAllItems()
+        print ("ViewDidLoad")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -35,6 +36,12 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
 //        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DogCell")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        print ("ViewWillAppear")
+        fetchAllItems()
+        collectionView?.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
