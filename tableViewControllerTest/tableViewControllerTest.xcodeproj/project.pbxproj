@@ -60,8 +60,8 @@
 			children = (
 				CE59CC8F1E78703500CBE517 /* AppDelegate.swift */,
 				CE59CC911E78703500CBE517 /* BucketListViewController.swift */,
-				CE59CCA51E78A25D00CBE517 /* AdditemTableViewControllerDelegate.swift */,
 				CE59CCA11E789F9300CBE517 /* addItemTableViewController.swift */,
+				CE59CCA51E78A25D00CBE517 /* AdditemTableViewControllerDelegate.swift */,
 				CE59CC931E78703500CBE517 /* Main.storyboard */,
 				CE59CC961E78703500CBE517 /* Assets.xcassets */,
 				CE59CC981E78703500CBE517 /* LaunchScreen.storyboard */,
@@ -305,6 +305,7 @@
 				CE59CCA01E78703500CBE517 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

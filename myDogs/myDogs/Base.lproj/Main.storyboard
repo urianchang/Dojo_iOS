@@ -9,26 +9,26 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Collection View Controller-->
+        <!--My Dogs-->
         <scene sceneID="aIG-jn-yPb">
             <objects>
-                <collectionViewController id="hrp-2A-IAN" sceneMemberID="viewController">
+                <collectionViewController id="hrp-2A-IAN" customClass="MainCollectionViewController" customModule="myDogs" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="2Ej-A2-wEE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Jq2-aP-fxM">
-                            <size key="itemSize" width="50" height="50"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="Jq2-aP-fxM">
+                            <size key="itemSize" width="115" height="115"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="I8A-33-NUa">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DogCell" id="I8A-33-NUa">
+                                <rect key="frame" x="5" y="5" width="115" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="115" height="115"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </view>
                             </collectionViewCell>
@@ -38,13 +38,69 @@
                             <outlet property="delegate" destination="hrp-2A-IAN" id="vT6-6F-yNn"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="Q5Z-F8-v4u">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="S9o-OF-TJH"/>
+                    <navigationItem key="navigationItem" title="My Dogs" id="Q5Z-F8-v4u">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="S9o-OF-TJH">
+                            <connections>
+                                <action selector="addPressed:" destination="hrp-2A-IAN" id="Ww4-bk-agW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="9ty-v0-so5" kind="show" identifier="AddDogSegue" id="yho-0Z-2y5"/>
+                        <segue destination="Guu-a3-iWJ" kind="presentation" identifier="EditDogSegue" id="3xy-7D-zY6"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Zs-XU-msK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="886" y="116"/>
+            <point key="canvasLocation" x="885.60000000000002" y="115.59220389805098"/>
+        </scene>
+        <!--Edit Dog View Controller-->
+        <scene sceneID="wpe-d9-Tgf">
+            <objects>
+                <viewController id="u5f-Lq-WcA" customClass="EditDogViewController" customModule="myDogs" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0I2-lO-M3K"/>
+                        <viewControllerLayoutGuide type="bottom" id="OvX-fc-7xF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K8s-Qd-1jy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yn4-cR-edn">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="BGR-jT-xe7">
+                            <connections>
+                                <action selector="cancelPressed:" destination="u5f-Lq-WcA" id="IYw-HU-oDJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="dBS-cF-5fO">
+                            <connections>
+                                <action selector="savePressed:" destination="u5f-Lq-WcA" id="lut-oS-Th1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hpq-6n-d8z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2393" y="582"/>
+        </scene>
+        <!--Add Dog View Controller-->
+        <scene sceneID="BzX-hY-z2k">
+            <objects>
+                <viewController id="9ty-v0-so5" customClass="AddDogViewController" customModule="myDogs" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7zU-zq-S1T"/>
+                        <viewControllerLayoutGuide type="bottom" id="edu-P6-GOW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mq7-gO-oFx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dhp-Oe-S2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1668" y="-114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mYI-ww-Jup">
@@ -63,6 +119,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="49X-fA-Fp2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="133.59999999999999" y="116.49175412293854"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vIN-J6-hZz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Guu-a3-iWJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Udr-bk-hCz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="u5f-Lq-WcA" kind="relationship" relationship="rootViewController" id="lyR-c5-Kf6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xKS-sm-jyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1668" y="582.45877061469275"/>
         </scene>
     </scenes>
 </document>

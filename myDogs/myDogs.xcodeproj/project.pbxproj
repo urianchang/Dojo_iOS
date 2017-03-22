@@ -12,6 +12,10 @@
 		CEB39EF31E81EC2B00FF04C4 /* myDogs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEB39EF11E81EC2B00FF04C4 /* myDogs.xcdatamodeld */; };
 		CEB39EF51E81EC2B00FF04C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB39EF41E81EC2B00FF04C4 /* Assets.xcassets */; };
 		CEB39EF81E81EC2B00FF04C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB39EF61E81EC2B00FF04C4 /* LaunchScreen.storyboard */; };
+		CEB39F001E81EE3A00FF04C4 /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB39EFF1E81EE3A00FF04C4 /* MainCollectionViewController.swift */; };
+		CEB39F021E81F24A00FF04C4 /* AddDogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB39F011E81F24A00FF04C4 /* AddDogViewController.swift */; };
+		CEB39F041E81F25E00FF04C4 /* EditDogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB39F031E81F25E00FF04C4 /* EditDogViewController.swift */; };
+		CEB39F061E8209EB00FF04C4 /* EditDogDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB39F051E8209EB00FF04C4 /* EditDogDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		CEB39EF41E81EC2B00FF04C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEB39EF71E81EC2B00FF04C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEB39EF91E81EC2B00FF04C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEB39EFF1E81EE3A00FF04C4 /* MainCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
+		CEB39F011E81F24A00FF04C4 /* AddDogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDogViewController.swift; sourceTree = "<group>"; };
+		CEB39F031E81F25E00FF04C4 /* EditDogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDogViewController.swift; sourceTree = "<group>"; };
+		CEB39F051E8209EB00FF04C4 /* EditDogDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDogDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,10 @@
 			children = (
 				CEB39EEA1E81EC2A00FF04C4 /* AppDelegate.swift */,
 				CEB39EEE1E81EC2B00FF04C4 /* Main.storyboard */,
+				CEB39EFF1E81EE3A00FF04C4 /* MainCollectionViewController.swift */,
+				CEB39F011E81F24A00FF04C4 /* AddDogViewController.swift */,
+				CEB39F031E81F25E00FF04C4 /* EditDogViewController.swift */,
+				CEB39F051E8209EB00FF04C4 /* EditDogDelegate.swift */,
 				CEB39EF41E81EC2B00FF04C4 /* Assets.xcassets */,
 				CEB39EF61E81EC2B00FF04C4 /* LaunchScreen.storyboard */,
 				CEB39EF91E81EC2B00FF04C4 /* Info.plist */,
@@ -137,7 +149,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB39EEB1E81EC2A00FF04C4 /* AppDelegate.swift in Sources */,
+				CEB39F001E81EE3A00FF04C4 /* MainCollectionViewController.swift in Sources */,
 				CEB39EF31E81EC2B00FF04C4 /* myDogs.xcdatamodeld in Sources */,
+				CEB39F061E8209EB00FF04C4 /* EditDogDelegate.swift in Sources */,
+				CEB39F041E81F25E00FF04C4 /* EditDogViewController.swift in Sources */,
+				CEB39F021E81F24A00FF04C4 /* AddDogViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
