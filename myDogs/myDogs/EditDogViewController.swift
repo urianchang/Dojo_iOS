@@ -15,7 +15,6 @@ class EditDogViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var dogNameTextField: UITextField!
     @IBOutlet weak var dogColorTextField: UITextField!
     @IBOutlet weak var dogTreatTextField: UITextField!
-    
     @IBOutlet weak var dogProfiePic: UIImageView!
     
     @IBAction func dogPicPressed(_ sender: UIButton) {
@@ -24,7 +23,7 @@ class EditDogViewController: UIViewController, UIImagePickerControllerDelegate, 
         present(imagePicker, animated: true, completion: nil)
     }
     
-    //: UIImagePicker functions
+    //: UIImagePicker helper functions
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             dogProfiePic.contentMode = .scaleAspectFit

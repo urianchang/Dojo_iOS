@@ -16,7 +16,6 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
 
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-//    var items = [1, 2, 3, 4, 5, 6]
     var items = [Dog]()
     
     @IBAction func addPressed(_ sender: UIBarButtonItem) {
@@ -27,12 +26,9 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAllItems()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
         // Register cell classes
         //: Commented this line out because it was throwing an error with the custom cell.
-//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DogCell")
+        //: self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DogCell")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,8 +43,7 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
 
 
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    //: Segues to Add Dog / Edit Dog
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddDogSegue" {
             print ("Taking you to add new dog view")
@@ -62,22 +57,19 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
             editDogViewController.indexPath = indexPath
         }
     }
-
+    //: Unwind segue
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
     }
 
     // MARK: UICollectionViewDataSource
-
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return items.count
     }
-
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DogCell", for: indexPath) as! CustomCell
         cell.dogNameLabel.text = items[indexPath.row].name
@@ -87,6 +79,7 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
         return cell
     }
     
+    //: Core Data Helper functions
     func fetchAllItems() {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Dog")
         do {
@@ -98,11 +91,12 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
     }
     
     // MARK: UICollectionViewDelegate
-
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "EditDogSegue", sender: indexPath)
     }
     
+    //: Edit Dog Delegate methods
+        //: Save
     func itemSaved(by controller: EditDogViewController, with dog: Dog, at indexPath: NSIndexPath?) {
         if let ip = indexPath {
             items[ip.row] = dog
@@ -115,11 +109,11 @@ class MainCollectionViewController: UICollectionViewController, EditDogDelegate 
         collectionView?.reloadData()
         dismiss(animated: true, completion: nil)
     }
-    
+        //: Cancel
     func itemCancel(by controller: EditDogViewController) {
         dismiss(animated: true, completion: nil)
     }
-    
+        //: Delete
     func itemDelete(by controller: EditDogViewController, at indexPath: NSIndexPath?) {
         if let ip = indexPath {
             managedObjectContext.delete(items[ip.row])

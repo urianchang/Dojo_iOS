@@ -30,7 +30,7 @@ class AddDogViewController: UIViewController, UIImagePickerControllerDelegate, U
         present(imagePicker, animated: true, completion: nil)
     }
     
-    //: UIImagePicker functions
+    //: UIImagePicker helper functions
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             dogImageView.contentMode = .scaleAspectFit
