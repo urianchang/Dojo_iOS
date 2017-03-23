@@ -1,0 +1,14 @@
+//: Assignment: Core Data II
+
+In the previous tab, we were able to successfully connect to Core Data and perform a save.
+What do you think would trigger the catch statement below?
+
+do {
+    try managedContext.save()
+    print("Success!")
+} catch {
+    print("Error: \(error)")
+}
+
+Response:
+An error occurs when trying to commit/save data.
