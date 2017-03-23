@@ -9,7 +9,8 @@
 import UIKit
 
 class AuthorListTableViewController: UITableViewController {
-
+    var authors = ["a", "b", "c"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,7 +39,7 @@ class AuthorListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AuthorCell", for: indexPath)
 
         // Configure the cell...
         cell.textLabel!.text = "Author \(indexPath.row)"
@@ -46,7 +47,15 @@ class AuthorListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowBookList", sender: nil)
+        let author = authors[indexPath.row]
+        performSegue(withIdentifier: "ShowBookList", sender: author)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowBookList" {
+            let bookListTableViewController = segue.destination as! BookListTableViewController
+            bookListTableViewController.author = sender as! Author
+        }
     }
     
     /*

@@ -10,6 +10,8 @@ import UIKit
 
 class BookListTableViewController: UITableViewController {
 
+    var author: Author!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,7 +41,7 @@ class BookListTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
 
         // Configure the cell...
         cell.textLabel!.text = "Book \(indexPath.row)"
