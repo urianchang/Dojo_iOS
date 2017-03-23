@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		CE102C921E8262B900D17E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE102C911E8262B900D17E0D /* AppDelegate.swift */; };
-		CE102C941E8262B900D17E0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE102C931E8262B900D17E0D /* ViewController.swift */; };
 		CE102C971E8262B900D17E0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE102C951E8262B900D17E0D /* Main.storyboard */; };
 		CE102C9A1E8262B900D17E0D /* BookApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE102C981E8262B900D17E0D /* BookApp.xcdatamodeld */; };
 		CE102C9C1E8262B900D17E0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE102C9B1E8262B900D17E0D /* Assets.xcassets */; };
 		CE102C9F1E8262B900D17E0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE102C9D1E8262B900D17E0D /* LaunchScreen.storyboard */; };
+		CE98F2011E83A39900A82246 /* BookListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE98F2001E83A39900A82246 /* BookListTableViewController.swift */; };
+		CE98F2031E83A3AA00A82246 /* AuthorListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE98F2021E83A3AA00A82246 /* AuthorListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CE102C8E1E8262B900D17E0D /* BookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE102C911E8262B900D17E0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE102C931E8262B900D17E0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE102C961E8262B900D17E0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE102C991E8262B900D17E0D /* BookApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookApp.xcdatamodel; sourceTree = "<group>"; };
 		CE102C9B1E8262B900D17E0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE102C9E1E8262B900D17E0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE102CA01E8262B900D17E0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE98F2001E83A39900A82246 /* BookListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListTableViewController.swift; sourceTree = "<group>"; };
+		CE98F2021E83A3AA00A82246 /* AuthorListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +59,9 @@
 			isa = PBXGroup;
 			children = (
 				CE102C911E8262B900D17E0D /* AppDelegate.swift */,
-				CE102C931E8262B900D17E0D /* ViewController.swift */,
 				CE102C951E8262B900D17E0D /* Main.storyboard */,
+				CE98F2001E83A39900A82246 /* BookListTableViewController.swift */,
+				CE98F2021E83A3AA00A82246 /* AuthorListTableViewController.swift */,
 				CE102C9B1E8262B900D17E0D /* Assets.xcassets */,
 				CE102C9D1E8262B900D17E0D /* LaunchScreen.storyboard */,
 				CE102CA01E8262B900D17E0D /* Info.plist */,
@@ -139,9 +142,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE102C941E8262B900D17E0D /* ViewController.swift in Sources */,
+				CE98F2031E83A3AA00A82246 /* AuthorListTableViewController.swift in Sources */,
 				CE102C921E8262B900D17E0D /* AppDelegate.swift in Sources */,
 				CE102C9A1E8262B900D17E0D /* BookApp.xcdatamodeld in Sources */,
+				CE98F2011E83A39900A82246 /* BookListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +305,7 @@
 				CE102CA51E8262B900D17E0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
