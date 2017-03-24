@@ -35,7 +35,6 @@ class EditContactViewController: UIViewController {
         } else {
             print ("UH-OH")
         }
-        
     }
     
     override func viewDidLoad() {

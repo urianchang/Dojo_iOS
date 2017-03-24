@@ -12,9 +12,6 @@ import CoreData
 
 class ContactListTableViewController: UITableViewController, EditContactDelegate, ShowContactDelegate {
 
-//    var contacts = ["Test 1", "Test 2"]
-//    var numbers = ["123", "456"]
-
     var contacts = [Contact]()
     
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -83,10 +80,6 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
 
     //: EditContactDelegate Functions
     func itemSaved(by controller: EditContactViewController, firstname: String, lastname: String, number: String, indexPath: NSIndexPath?){
-//        print ("First name: \(firstname)")
-//        print ("Last name: \(lastname)")
-//        print ("Number: \(number)")
-//        print ("IndexPath: \(indexPath)")
         if let ip = indexPath {
             let contact = contacts[ip.row]
             contact.firstname = firstname

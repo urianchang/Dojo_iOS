@@ -22,7 +22,6 @@ class ShowContactViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = name
@@ -34,6 +33,5 @@ class ShowContactViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
 }

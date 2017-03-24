@@ -1,0 +1,12 @@
+Grading Rubric:
+
+(1) Add (+) Button Segues To View Embedded In NavigationController With 3 TextFields
+(1) TableView Shows Created Contacts
+(1) TableView Cell Shows Phone Number In Detail
+(1) All Segues Must Be Modal Presentations
+(1) Tapping Cell Triggers Action Sheet
+(1) Clicking Action Sheet "View" Button Presents View With Name / Phone #
+(1) Clicking Action Sheet "Edit" Button Presents View With Pre-populated TextFields
+(1) Clicking Action Sheet "Delete" Button Deletes Item
+(1) Saving Contact Should UpdateContact Information In TableView
+(1) All Changes Persist Upon Reload (Using Core Data)
