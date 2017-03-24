@@ -10,6 +10,7 @@ import UIKit
 
 class EditContactViewController: UIViewController {
 
+    weak var delegate: EditContactDelegate?
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -19,9 +20,11 @@ class EditContactViewController: UIViewController {
     
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        delegate?.cancelPressed(by: self)
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        delegate?.itemSaved(by: self)
     }
     
     

@@ -9,8 +9,11 @@
 import UIKit
 
 class ShowContactViewController: UIViewController {
-
+    
+    weak var delegate : ShowContactDelegate?
+    
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
+        delegate?.donePressed(by: self)
     }
     
     @IBOutlet weak var nameLabel: UILabel!
