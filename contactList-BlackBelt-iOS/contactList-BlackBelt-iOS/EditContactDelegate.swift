@@ -8,6 +8,6 @@
 
 import Foundation
 protocol EditContactDelegate: class {
-    func itemSaved(by controller: EditContactViewController)
+    func itemSaved(by controller: EditContactViewController, firstname: String, lastname: String, number: String, indexPath: NSIndexPath?)
     func cancelPressed(by controller: EditContactViewController)
 }

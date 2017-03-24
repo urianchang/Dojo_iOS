@@ -76,7 +76,11 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
     }
 
     //: EditContactDelegate Functions
-    func itemSaved(by controller: EditContactViewController){
+    func itemSaved(by controller: EditContactViewController, firstname: String, lastname: String, number: String, indexPath: NSIndexPath?){
+        print ("First name: \(firstname)")
+        print ("Last name: \(lastname)")
+        print ("Number: \(number)")
+        print ("IndexPath: \(indexPath)")
         dismiss(animated: true, completion: nil)
     }
     func cancelPressed(by controller: EditContactViewController){
@@ -95,10 +99,13 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
             let navigationController = segue.destination as! UINavigationController
             let editContactVC = navigationController.topViewController as! EditContactViewController
             editContactVC.delegate = self
+            editContactVC.new = true
             if let senderobj = sender as? NSIndexPath {
+                editContactVC.new = false
                 editContactVC.firstName = contacts[senderobj.row]
                 editContactVC.lastName = contacts[senderobj.row]
                 editContactVC.number = numbers[senderobj.row]
+                editContactVC.indexPath = senderobj
             }
         } else if segue.identifier == "showContactSegue" {
             let navigationController = segue.destination as! UINavigationController

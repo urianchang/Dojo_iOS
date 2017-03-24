@@ -19,20 +19,27 @@ class EditContactViewController: UIViewController {
     var firstName : String?
     var lastName : String?
     var number : String?
+    var indexPath : NSIndexPath?
+    var new : Bool?
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         delegate?.cancelPressed(by: self)
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        delegate?.itemSaved(by: self)
+        let fname = firstNameTextField.text!
+        let lname = lastNameTextField.text!
+        let number = numberTextField.text!
+        delegate?.itemSaved(by: self, firstname: fname, lastname: lname, number: number, indexPath: indexPath)
     }
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if new! {
+            self.title = "Add Contact"
+        } else {
+            self.title = "Edit Contact"
+        }
         firstNameTextField.text = firstName
         lastNameTextField.text = lastName
         numberTextField.text = number
@@ -43,5 +50,4 @@ class EditContactViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
 }
