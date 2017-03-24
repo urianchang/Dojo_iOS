@@ -52,20 +52,22 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
         let editButton = UIAlertAction(title: "Edit", style: .default, handler: {(action)->Void in
             self.performSegue(withIdentifier: "editContactSegue", sender: indexPath)
         })
-//        let deleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: {(action)->Void in
-////            let contact = self.contacts[indexPath.row]
-////            self.managedObjectContext.delete(contact)
+        let deleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: {(action)->Void in
+            self.contacts.remove(at: indexPath.row)
+            self.numbers.remove(at: indexPath.row)
+//            let contact = self.contacts[indexPath.row]
+//            self.managedObjectContext.delete(contact)
 //            self.contacts.remove(at: indexPath.row)
-//            self.tableView.reloadData()
-////            self.saveObject()
-//        })
+            self.tableView.reloadData()
+//            self.saveObject()
+        })
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action)->Void in
-            print("cancelButton pressed")
+            print("Action sheet Cancelled")
         })
         
         alertController.addAction(viewButton)
         alertController.addAction(editButton)
-//        alertController.addAction(deleteButton)
+        alertController.addAction(deleteButton)
         alertController.addAction(cancelButton)
         self.navigationController!.present(alertController, animated: true, completion: nil)
     }
@@ -77,10 +79,20 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
 
     //: EditContactDelegate Functions
     func itemSaved(by controller: EditContactViewController, firstname: String, lastname: String, number: String, indexPath: NSIndexPath?){
-        print ("First name: \(firstname)")
-        print ("Last name: \(lastname)")
-        print ("Number: \(number)")
-        print ("IndexPath: \(indexPath)")
+//        print ("First name: \(firstname)")
+//        print ("Last name: \(lastname)")
+//        print ("Number: \(number)")
+//        print ("IndexPath: \(indexPath)")
+        if let ip = indexPath {
+//            var contact = contacts[ip.row]
+            contacts[ip.row] = firstname + " " + lastname
+//            var num = numbers[ip.row]
+            numbers[ip.row] = number
+        } else {
+            contacts.append((firstname + " " + lastname))
+            numbers.append(number)
+        }
+        tableView.reloadData()
         dismiss(animated: true, completion: nil)
     }
     func cancelPressed(by controller: EditContactViewController){
