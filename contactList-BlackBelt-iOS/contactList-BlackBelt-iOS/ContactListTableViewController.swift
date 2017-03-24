@@ -7,17 +7,23 @@
 //
 
 import UIKit
+import Foundation
+import CoreData
 
 class ContactListTableViewController: UITableViewController, EditContactDelegate, ShowContactDelegate {
 
-    var contacts = ["Test 1", "Test 2"]
-    var numbers = ["123", "456"]
+//    var contacts = ["Test 1", "Test 2"]
+//    var numbers = ["123", "456"]
+
+    var contacts = [Contact]()
+    
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        fetchAllItems()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -37,15 +43,15 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
         // CELLS
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath)
-        cell.textLabel?.text = contacts[indexPath.row]
-        cell.detailTextLabel?.text = numbers[indexPath.row]
+        cell.textLabel?.text = contacts[indexPath.row].firstname! + " " + contacts[indexPath.row].lastname!
+        cell.detailTextLabel?.text = contacts[indexPath.row].number!
         return cell
     }
 
     // MARK: - Table Cell Action(s)
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //: ACTION SHEETS TRA-LA-LA-LA~
-        let alertController = UIAlertController(title: "For \(contacts[indexPath.row])", message: "What would you like to do?", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "For \(contacts[indexPath.row].firstname! + " " + contacts[indexPath.row].lastname!)", message: "What would you like to do?", preferredStyle: .actionSheet)
         let viewButton = UIAlertAction(title: "View", style: .default, handler: {(action)-> Void in
             self.performSegue(withIdentifier: "showContactSegue", sender: indexPath)
         })
@@ -53,13 +59,11 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
             self.performSegue(withIdentifier: "editContactSegue", sender: indexPath)
         })
         let deleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: {(action)->Void in
+            let contact = self.contacts[indexPath.row]
+            self.managedObjectContext.delete(contact)
             self.contacts.remove(at: indexPath.row)
-            self.numbers.remove(at: indexPath.row)
-//            let contact = self.contacts[indexPath.row]
-//            self.managedObjectContext.delete(contact)
-//            self.contacts.remove(at: indexPath.row)
             self.tableView.reloadData()
-//            self.saveObject()
+            self.saveData()
         })
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action)->Void in
             print("Action sheet Cancelled")
@@ -84,14 +88,18 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
 //        print ("Number: \(number)")
 //        print ("IndexPath: \(indexPath)")
         if let ip = indexPath {
-//            var contact = contacts[ip.row]
-            contacts[ip.row] = firstname + " " + lastname
-//            var num = numbers[ip.row]
-            numbers[ip.row] = number
+            let contact = contacts[ip.row]
+            contact.firstname = firstname
+            contact.lastname = lastname
+            contact.number = number
         } else {
-            contacts.append((firstname + " " + lastname))
-            numbers.append(number)
+            let newContact = NSEntityDescription.insertNewObject(forEntityName: "Contact", into: managedObjectContext) as! Contact
+            newContact.firstname = firstname
+            newContact.lastname = lastname
+            newContact.number = number
+            contacts.append(newContact)
         }
+        saveData()
         tableView.reloadData()
         dismiss(animated: true, completion: nil)
     }
@@ -114,9 +122,9 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
             editContactVC.new = true
             if let senderobj = sender as? NSIndexPath {
                 editContactVC.new = false
-                editContactVC.firstName = contacts[senderobj.row]
-                editContactVC.lastName = contacts[senderobj.row]
-                editContactVC.number = numbers[senderobj.row]
+                editContactVC.firstName = contacts[senderobj.row].firstname
+                editContactVC.lastName = contacts[senderobj.row].lastname
+                editContactVC.number = contacts[senderobj.row].number
                 editContactVC.indexPath = senderobj
             }
         } else if segue.identifier == "showContactSegue" {
@@ -124,11 +132,29 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
             let showContactVC = navigationController.topViewController as! ShowContactViewController
             showContactVC.delegate = self
             if let senderobj = sender as? NSIndexPath {
-                showContactVC.name = contacts[senderobj.row]
-                showContactVC.number = numbers[senderobj.row]
+                showContactVC.name = contacts[senderobj.row].firstname! + " " + contacts[senderobj.row].lastname!
+                showContactVC.number = contacts[senderobj.row].number
             }
         }
     }
 
-
+    //: MARK: - Core Data Functions
+    // Fetch all contacts in core data
+    func fetchAllItems() {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Contact")
+        do {
+            let result = try managedObjectContext.fetch(request)
+            contacts = result as! [Contact]
+        } catch {
+            print ("\(error)")
+        }
+    }
+    // Save to core data
+    func saveData() {
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print ("\(error)")
+        }
+    }
 }
