@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		CEEB80401E857BE500249E6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB803F1E857BE500249E6F /* AppDelegate.swift */; };
-		CEEB80421E857BE500249E6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB80411E857BE500249E6F /* ViewController.swift */; };
 		CEEB80451E857BE500249E6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEB80431E857BE500249E6F /* Main.storyboard */; };
 		CEEB80481E857BE500249E6F /* contactList_BlackBelt_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CEEB80461E857BE500249E6F /* contactList_BlackBelt_iOS.xcdatamodeld */; };
 		CEEB804A1E857BE500249E6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEEB80491E857BE500249E6F /* Assets.xcassets */; };
 		CEEB804D1E857BE500249E6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEEB804B1E857BE500249E6F /* LaunchScreen.storyboard */; };
+		CEEB80551E857CB800249E6F /* ContactListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB80541E857CB800249E6F /* ContactListTableViewController.swift */; };
+		CEEB80571E857D1F00249E6F /* ShowContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB80561E857D1F00249E6F /* ShowContactViewController.swift */; };
+		CEEB80591E857D3000249E6F /* EditContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB80581E857D3000249E6F /* EditContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CEEB803C1E857BE500249E6F /* contactList-BlackBelt-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "contactList-BlackBelt-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEEB803F1E857BE500249E6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CEEB80411E857BE500249E6F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CEEB80441E857BE500249E6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEEB80471E857BE500249E6F /* contactList_BlackBelt_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = contactList_BlackBelt_iOS.xcdatamodel; sourceTree = "<group>"; };
 		CEEB80491E857BE500249E6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEEB804C1E857BE500249E6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEEB804E1E857BE500249E6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEEB80541E857CB800249E6F /* ContactListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListTableViewController.swift; sourceTree = "<group>"; };
+		CEEB80561E857D1F00249E6F /* ShowContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowContactViewController.swift; sourceTree = "<group>"; };
+		CEEB80581E857D3000249E6F /* EditContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditContactViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +61,10 @@
 			isa = PBXGroup;
 			children = (
 				CEEB803F1E857BE500249E6F /* AppDelegate.swift */,
-				CEEB80411E857BE500249E6F /* ViewController.swift */,
 				CEEB80431E857BE500249E6F /* Main.storyboard */,
+				CEEB80581E857D3000249E6F /* EditContactViewController.swift */,
+				CEEB80561E857D1F00249E6F /* ShowContactViewController.swift */,
+				CEEB80541E857CB800249E6F /* ContactListTableViewController.swift */,
 				CEEB80491E857BE500249E6F /* Assets.xcassets */,
 				CEEB804B1E857BE500249E6F /* LaunchScreen.storyboard */,
 				CEEB804E1E857BE500249E6F /* Info.plist */,
@@ -139,8 +145,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEEB80421E857BE500249E6F /* ViewController.swift in Sources */,
+				CEEB80591E857D3000249E6F /* EditContactViewController.swift in Sources */,
+				CEEB80551E857CB800249E6F /* ContactListTableViewController.swift in Sources */,
 				CEEB80481E857BE500249E6F /* contactList_BlackBelt_iOS.xcdatamodeld in Sources */,
+				CEEB80571E857D1F00249E6F /* ShowContactViewController.swift in Sources */,
 				CEEB80401E857BE500249E6F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
