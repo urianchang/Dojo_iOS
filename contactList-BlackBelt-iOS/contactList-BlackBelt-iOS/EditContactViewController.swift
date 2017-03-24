@@ -30,7 +30,12 @@ class EditContactViewController: UIViewController {
         let fname = firstNameTextField.text!
         let lname = lastNameTextField.text!
         let number = numberTextField.text!
-        delegate?.itemSaved(by: self, firstname: fname, lastname: lname, number: number, indexPath: indexPath)
+        if isValid() {
+            delegate?.itemSaved(by: self, firstname: fname, lastname: lname, number: number, indexPath: indexPath)
+        } else {
+            print ("UH-OH")
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -50,4 +55,32 @@ class EditContactViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //: Helper function that checks if input is valid
+    func isValid() -> Bool {
+        if firstNameTextField.text == "" {
+            let alertController = UIAlertController(title: "ERROR", message: "Please input a first name", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default) { action in
+            }
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion: nil)
+            return false
+        }
+        if lastNameTextField.text == "" {
+            let alertController = UIAlertController(title: "ERROR", message: "Please input a last name", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default) { action in
+            }
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion: nil)
+            return false
+        }
+        if numberTextField.text == "" {
+            let alertController = UIAlertController(title: "ERROR", message: "Please input a phone number", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default) { action in
+            }
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
 }
