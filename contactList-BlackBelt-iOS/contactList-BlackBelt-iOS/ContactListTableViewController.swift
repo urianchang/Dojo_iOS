@@ -44,10 +44,33 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
 
     // MARK: - Table Cell Action(s)
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showContactSegue", sender: indexPath)
+        //: ACTION SHEETS TRA-LA-LA-LA~
+        let alertController = UIAlertController(title: "For \(contacts[indexPath.row])", message: "What would you like to do?", preferredStyle: .actionSheet)
+        let viewButton = UIAlertAction(title: "View", style: .default, handler: {(action)-> Void in
+            self.performSegue(withIdentifier: "showContactSegue", sender: indexPath)
+        })
+        let editButton = UIAlertAction(title: "Edit", style: .default, handler: {(action)->Void in
+            self.performSegue(withIdentifier: "editContactSegue", sender: indexPath)
+        })
+//        let deleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: {(action)->Void in
+////            let contact = self.contacts[indexPath.row]
+////            self.managedObjectContext.delete(contact)
+//            self.contacts.remove(at: indexPath.row)
+//            self.tableView.reloadData()
+////            self.saveObject()
+//        })
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: {(action)->Void in
+            print("cancelButton pressed")
+        })
+        
+        alertController.addAction(viewButton)
+        alertController.addAction(editButton)
+//        alertController.addAction(deleteButton)
+        alertController.addAction(cancelButton)
+        self.navigationController!.present(alertController, animated: true, completion: nil)
     }
     
-    
+    // MARK: - Nav Bar Action(s)
     @IBAction func addContactPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "editContactSegue", sender: sender)
     }
@@ -72,6 +95,11 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
             let navigationController = segue.destination as! UINavigationController
             let editContactVC = navigationController.topViewController as! EditContactViewController
             editContactVC.delegate = self
+            if let senderobj = sender as? NSIndexPath {
+                editContactVC.firstName = contacts[senderobj.row]
+                editContactVC.lastName = contacts[senderobj.row]
+                editContactVC.number = numbers[senderobj.row]
+            }
         } else if segue.identifier == "showContactSegue" {
             let navigationController = segue.destination as! UINavigationController
             let showContactVC = navigationController.topViewController as! ShowContactViewController

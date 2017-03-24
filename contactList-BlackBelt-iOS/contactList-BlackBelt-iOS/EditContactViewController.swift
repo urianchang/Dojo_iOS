@@ -16,8 +16,9 @@ class EditContactViewController: UIViewController {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var numberTextField: UITextField!
     
-    
-    
+    var firstName : String?
+    var lastName : String?
+    var number : String?
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         delegate?.cancelPressed(by: self)
@@ -32,8 +33,9 @@ class EditContactViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        firstNameTextField.text = firstName
+        lastNameTextField.text = lastName
+        numberTextField.text = number
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,15 +43,5 @@ class EditContactViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
