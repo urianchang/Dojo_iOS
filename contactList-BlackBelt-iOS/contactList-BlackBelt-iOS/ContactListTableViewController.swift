@@ -23,7 +23,7 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK - Table View Configuration
+    // MARK: - Table View Configuration
         // SECTIONS
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -42,7 +42,7 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
         return cell
     }
 
-    // MARK - Table Cell Action(s)
+    // MARK: - Table Cell Action(s)
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showContactSegue", sender: indexPath)
     }
@@ -76,6 +76,10 @@ class ContactListTableViewController: UITableViewController, EditContactDelegate
             let navigationController = segue.destination as! UINavigationController
             let showContactVC = navigationController.topViewController as! ShowContactViewController
             showContactVC.delegate = self
+            if let senderobj = sender as? NSIndexPath {
+                showContactVC.name = contacts[senderobj.row]
+                showContactVC.number = numbers[senderobj.row]
+            }
         }
     }
 
