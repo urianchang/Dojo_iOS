@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12113" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TvI-eD-ePE">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12078"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Game View Controller-->
+        <scene sceneID="Lnh-jD-Xhm">
+            <objects>
+                <viewController id="wX1-Yp-wRb" customClass="GameViewController" customModule="Chorus" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vvc-mh-Wz6"/>
+                        <viewControllerLayoutGuide type="bottom" id="XOg-t2-h1n"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mHj-Fg-2II" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="TvI-eD-ePE" kind="show" identifier="unwind" id="59l-gO-Rkb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aPa-VQ-C1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1352.8" y="-770.46476761619192"/>
+        </scene>
+        <!--Song Table View Controller-->
+        <scene sceneID="4DZ-bd-PEt">
+            <objects>
+                <tableViewController id="Ppr-1w-BRP" customClass="SongTableViewController" customModule="Chorus" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Me-zZ-hkj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="songCell" id="Z6F-X4-1sT">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z6F-X4-1sT" id="MgV-No-Ysm">
+                                    <rect key="frame" x="0.0" y="0.0" width="328" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ppr-1w-BRP" id="tTM-8a-aqg"/>
+                            <outlet property="delegate" destination="Ppr-1w-BRP" id="YIh-FV-eXd"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ELb-1d-Nlc">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="BDs-Ts-BuY">
+                            <connections>
+                                <action selector="AddSong:" destination="Ppr-1w-BRP" id="yk7-Rg-j6G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="wX1-Yp-wRb" kind="presentation" identifier="musicSegue" id="cYT-y2-jv9"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ehP-Wa-fi2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="583.20000000000005" y="-770.46476761619192"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="K2e-Xu-gng">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TvI-eD-ePE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T6A-mL-gaP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ppr-1w-BRP" kind="relationship" relationship="rootViewController" id="YRN-vV-2Wi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BRZ-4e-Yy8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-356" y="-770.46476761619192"/>
+        </scene>
+    </scenes>
+</document>
